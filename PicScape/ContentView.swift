@@ -9,29 +9,36 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection = 0
+    @State public static var TouchSelect = 0
+    @State private var selection = TouchSelect
  
     var body: some View {
         TabView(selection: $selection){
-            Text("First View")
-                .font(.title)
+            PicScapeListView()
                 .tabItem {
                     VStack {
-                        Image("first")
-                        Text("First")
+                        Image("Home_icon")
+                        Text("Following")
                     }
                 }
                 .tag(0)
-            Text("Second View")
-                .font(.title)
+            PicScapeNewView()
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Second")
+                        Image("Lens_icon")
+                        Text("All")
                     }
                 }
                 .tag(1)
-        }
+            PicScapeYouView(user: User(id: 1, Username: "Arthur", UserPicUrl: "Arthur", FirstName: "Arthur", LastName: "Zerr", City: "", Country: ""))
+                .tabItem {
+                    VStack {
+                        Image("User_icon")
+                        Text("You")
+                    }
+                }
+                .tag(2)
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 
