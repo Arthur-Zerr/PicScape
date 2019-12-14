@@ -16,9 +16,9 @@ struct MapView: UIViewRepresentable {
         annotation.coordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
         view.addAnnotation(annotation)
-        view.isScrollEnabled = false
-        view.isZoomEnabled = false
-        view.isRotateEnabled = false
+        view.isScrollEnabled = true
+        view.isZoomEnabled = true
+        view.isRotateEnabled = true
         view.setRegion(region, animated: true)
     }
 }

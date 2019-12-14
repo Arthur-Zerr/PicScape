@@ -48,9 +48,11 @@
 		469D217D233BDDB20011A5AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469D217C233BDDB20011A5AF /* Assets.xcassets */; };
 		469D2180233BDDB20011A5AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469D217F233BDDB20011A5AF /* Preview Assets.xcassets */; };
 		469D2183233BDDB30011A5AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 469D2181233BDDB30011A5AF /* LaunchScreen.storyboard */; };
+		46BABFD92394507600507033 /* UserForLoginDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BABFD82394507600507033 /* UserForLoginDto.swift */; };
+		46BABFDC239452BD00507033 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 46BABFDB239452BD00507033 /* Alamofire */; };
 		46D4AD45238310A7006106A3 /* PicScapeYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD44238310A7006106A3 /* PicScapeYouView.swift */; };
 		46D4AD4723831344006106A3 /* PicScapeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD4623831344006106A3 /* PicScapeApi.swift */; };
-		46D4AD4A23834AA9006106A3 /* SwiftyRequest in Frameworks */ = {isa = PBXBuildFile; productRef = 46D4AD4923834AA9006106A3 /* SwiftyRequest */; };
+		46D7811A2398619B00AAADC3 /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D781192398619B00AAADC3 /* LoadingSpinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,8 +98,10 @@
 		469D217F233BDDB20011A5AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		469D2182233BDDB30011A5AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		469D2184233BDDB30011A5AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46BABFD82394507600507033 /* UserForLoginDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserForLoginDto.swift; sourceTree = "<group>"; };
 		46D4AD44238310A7006106A3 /* PicScapeYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeYouView.swift; sourceTree = "<group>"; };
 		46D4AD4623831344006106A3 /* PicScapeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeApi.swift; sourceTree = "<group>"; };
+		46D781192398619B00AAADC3 /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D4AD4A23834AA9006106A3 /* SwiftyRequest in Frameworks */,
 				46649E252381E14A00755042 /* WaterfallGrid in Frameworks */,
+				46BABFDC239452BD00507033 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,12 +166,11 @@
 		4681428E233D2B8300E18AE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4650152F2393192200A8FAE5 /* ImagePicker.swift */,
-				4650153123931BB500A8FAE5 /* CameraButtonView.swift */,
+				46D781182398618100AAADC3 /* Loading */,
+				46D032B723940FB600538735 /* Picture */,
+				46D032B623940FA300538735 /* Camera */,
 				465601B223412D2A00C821FF /* SwitchPage */,
 				46814296233D387100E18AE2 /* MapView.swift */,
-				4681428F233D2BCC00E18AE2 /* Picture_Component.swift */,
-				46649E2C2381E94000755042 /* PicScapeNew_Component.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 		46814291233D2BDB00E18AE2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				46BABFD72394506400507033 /* Dtos */,
 				46814292233D2BF800E18AE2 /* Picture_Component_Model.swift */,
 				46814294233D330400E18AE2 /* User.swift */,
 				46649E282381E5AF00755042 /* Picture_Model.swift */,
@@ -235,6 +239,40 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		46BABFD72394506400507033 /* Dtos */ = {
+			isa = PBXGroup;
+			children = (
+				46BABFD82394507600507033 /* UserForLoginDto.swift */,
+			);
+			path = Dtos;
+			sourceTree = "<group>";
+		};
+		46D032B623940FA300538735 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				4650152F2393192200A8FAE5 /* ImagePicker.swift */,
+				4650153123931BB500A8FAE5 /* CameraButtonView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		46D032B723940FB600538735 /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				4681428F233D2BCC00E18AE2 /* Picture_Component.swift */,
+				46649E2C2381E94000755042 /* PicScapeNew_Component.swift */,
+			);
+			path = Picture;
+			sourceTree = "<group>";
+		};
+		46D781182398618100AAADC3 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				46D781192398619B00AAADC3 /* LoadingSpinner.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -253,7 +291,7 @@
 			name = PicScape;
 			packageProductDependencies = (
 				46649E242381E14A00755042 /* WaterfallGrid */,
-				46D4AD4923834AA9006106A3 /* SwiftyRequest */,
+				46BABFDB239452BD00507033 /* Alamofire */,
 			);
 			productName = PicScape;
 			productReference = 469D2173233BDDB10011A5AF /* PicScape.app */;
@@ -285,7 +323,7 @@
 			mainGroup = 469D216A233BDDB10011A5AF;
 			packageReferences = (
 				46649E232381E14A00755042 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
-				46D4AD4823834AA9006106A3 /* XCRemoteSwiftPackageReference "SwiftyRequest" */,
+				46BABFDA239452BD00507033 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 469D2174233BDDB10011A5AF /* Products */;
 			projectDirPath = "";
@@ -344,6 +382,8 @@
 				469D2177233BDDB10011A5AF /* AppDelegate.swift in Sources */,
 				469D2179233BDDB10011A5AF /* SceneDelegate.swift in Sources */,
 				465601B623412F1400C821FF /* PageViewController.swift in Sources */,
+				46BABFD92394507600507033 /* UserForLoginDto.swift in Sources */,
+				46D7811A2398619B00AAADC3 /* LoadingSpinner.swift in Sources */,
 				4650153223931BB500A8FAE5 /* CameraButtonView.swift in Sources */,
 				46649E292381E5AF00755042 /* Picture_Model.swift in Sources */,
 				465601B823412F1400C821FF /* PageView.swift in Sources */,
@@ -556,12 +596,12 @@
 				minimumVersion = 0.3.1;
 			};
 		};
-		46D4AD4823834AA9006106A3 /* XCRemoteSwiftPackageReference "SwiftyRequest" */ = {
+		46BABFDA239452BD00507033 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/IBM-Swift/SwiftyRequest.git";
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.0;
+				kind = exactVersion;
+				version = "5.0.0-rc.3";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -572,10 +612,10 @@
 			package = 46649E232381E14A00755042 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
 			productName = WaterfallGrid;
 		};
-		46D4AD4923834AA9006106A3 /* SwiftyRequest */ = {
+		46BABFDB239452BD00507033 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 46D4AD4823834AA9006106A3 /* XCRemoteSwiftPackageReference "SwiftyRequest" */;
-			productName = SwiftyRequest;
+			package = 46BABFDA239452BD00507033 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

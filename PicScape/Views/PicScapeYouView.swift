@@ -8,6 +8,7 @@
 
 import SwiftUI
 import WaterfallGrid
+import MapKit
 
 struct PicScapeYouView: View {
     @State var isOnline = false;
@@ -24,8 +25,9 @@ struct PicScapeYouView: View {
                 VStack{
                     user.UserPicture?
                         .resizable()
-                        .clipped()
                         .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.white, lineWidth: 4))
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 160, height: 160)
 
@@ -35,24 +37,11 @@ struct PicScapeYouView: View {
                 }
                 VStack{
                     HStack{
-                        Text(isOnline.description)
-                        Button(action: {self.SendRequest()}){
-                            Image("Refresh_icon")
-                                .resizable()
-                                .frame(width: 32, height:32)
-                        }
-                        if isOnline {
-                        Circle().foregroundColor(Color.green)
-                            .frame(width: 32, height:32)
-                        }else {
-                            Circle().foregroundColor(Color.red)
-                            .frame(width: 32, height:32)
-                        }
                         CameraButtonView(showActionSheet: $showActionSheet)
                     }
-                    WaterfallGrid(PicScapeNewData) { picscapedata in
-                        PicScapeNew_Component(pictureData: picscapedata)
-                    }.gridStyle(columns: 3, spacing: 8)
+                    MapView(coordinate: CLLocationCoordinate2D(
+                    latitude: 1,
+                    longitude: 1))
                 }
                 .actionSheet(isPresented: $showActionSheet, content: { () -> ActionSheet in
                     ActionSheet(title: Text("Select Image"), message: Text("Please select an image from the image gallery or use the camera"), buttons: [
@@ -73,10 +62,6 @@ struct PicScapeYouView: View {
                 ImagePicker(isVisibile: $showImagePicker, image: $image, sourceType: sourceType)
             }
         }
-    }
-    func SendRequest()
-    {
-        isOnline = PicScapeAPI.getIsOnline()
     }
 }
 
