@@ -10,21 +10,21 @@ import Alamofire
 
 
 public class PicScapeAPI {
-    static var url : String = "http://192.168.178.67:5000"
+    static var url : String = "http://192.168.178.96:5000"
     
     static func sendGet(){
 
 
     }
-    static func Login(username : String, password : String, completion: @escaping (Result<Bool, AFError>) -> Void) {
+    static func Login(username : String, password : String, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
         let login = UserForLoginDto(Username: username, Password: password)
         
-        AF.request(url + "/api/Auth",
+        AF.request(url + "/Auth/Login",
                        method: .post,
                        parameters: login,
-                       encoder: JSONParameterEncoder.default).validate().responseDecodable { (response: DataResponse<Bool, AFError>) in
-                       completion(response.result)
-                }
+                       encoder: JSONParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                        completion(response.result)
+                })
     }
     
     static func getIsOnline() -> Bool {

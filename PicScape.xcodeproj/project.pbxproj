@@ -53,6 +53,7 @@
 		46D4AD45238310A7006106A3 /* PicScapeYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD44238310A7006106A3 /* PicScapeYouView.swift */; };
 		46D4AD4723831344006106A3 /* PicScapeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD4623831344006106A3 /* PicScapeApi.swift */; };
 		46D7811A2398619B00AAADC3 /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D781192398619B00AAADC3 /* LoadingSpinner.swift */; };
+		DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3A41323AC252900AD1616 /* ResponseDto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		46D4AD44238310A7006106A3 /* PicScapeYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeYouView.swift; sourceTree = "<group>"; };
 		46D4AD4623831344006106A3 /* PicScapeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeApi.swift; sourceTree = "<group>"; };
 		46D781192398619B00AAADC3 /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
+		DBA3A41323AC252900AD1616 /* ResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				46BABFD82394507600507033 /* UserForLoginDto.swift */,
+				DBA3A41323AC252900AD1616 /* ResponseDto.swift */,
 			);
 			path = Dtos;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			files = (
 				46649E2D2381E94000755042 /* PicScapeNew_Component.swift in Sources */,
 				465601B723412F1400C821FF /* PageControl.swift in Sources */,
+				DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */,
 				46649E1F2381BB3F00755042 /* PicScapeListView.swift in Sources */,
 				465015302393192200A8FAE5 /* ImagePicker.swift in Sources */,
 				46814293233D2BF800E18AE2 /* Picture_Component_Model.swift in Sources */,

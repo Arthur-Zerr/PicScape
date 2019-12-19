@@ -13,10 +13,11 @@ struct ContentView: View {
     @State private var selection = TouchSelect
     
     @State public var Login : Bool = false
-    @State private var Error : Bool = true
+    @State private var Error : Bool = false
     @State private var Loading: Bool = false
     @State private var username: String = ""
     @State private var password: String = ""
+    @State private var responseMessage : String = ""
     
     var body: some View {
         ZStack{
@@ -51,9 +52,6 @@ struct ContentView: View {
             }
             if Login == false{
                 VStack{
-                    if Error {
-                        
-                    }
                     VStack{
                         Text("PicScape")
                             .font(.largeTitle)
@@ -78,20 +76,39 @@ struct ContentView: View {
                     LoadingSpinner().frame(width: 75, height: 75)
                 }.foregroundColor(Color("LoadingSpinnerColor"))
             }
+        }.alert(isPresented: $Error) { () -> Alert in
+            Alert(title: Text("Error"), message: Text(responseMessage), dismissButton: .default(Text("Got it!")))
         }
     }
     func UserLogin(){
         self.Loading = true
         PicScapeAPI.Login(username: self.username, password: self.password){ result in
             switch result {
-                   case .success(_):
-                        self.Login = true
-                        self.Loading = false
-                   case .failure(let error):
-                       print(error.localizedDescription)
-                       self.Loading = false
-                   }
+            case .success(let responseData):
+                if responseData.success == true {
+                    self.Login = true
+                    self.Loading = false
+                }
+                else {
+                    print(responseData.message)
+                    self.responseMessage = responseData.message
+                    self.Loading = false
+                    self.Error = true
+                    self.clearText()
+                }
+                    
+           case .failure(let error):
+               print(error)
+               self.responseMessage = error.localizedDescription
+               self.Error = true
+               self.Loading = false
+           }
         }
+    }
+    
+    func clearText() {
+        username = ""
+        password = ""
     }
 }
 
