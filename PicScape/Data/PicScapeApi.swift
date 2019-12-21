@@ -16,8 +16,8 @@ public class PicScapeAPI {
 
 
     }
-    static func Login(username : String, password : String, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
-        let login = UserForLoginDto(Username: username, Password: password)
+    static func Login(loginData : LoginBinding, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        let login = UserForLoginDto(Username: loginData.Username, Password: loginData.Password)
         
         AF.request(url + "/Auth/Login",
                        method: .post,

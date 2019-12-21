@@ -53,7 +53,12 @@
 		46D4AD45238310A7006106A3 /* PicScapeYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD44238310A7006106A3 /* PicScapeYouView.swift */; };
 		46D4AD4723831344006106A3 /* PicScapeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD4623831344006106A3 /* PicScapeApi.swift */; };
 		46D7811A2398619B00AAADC3 /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D781192398619B00AAADC3 /* LoadingSpinner.swift */; };
+		DB44357B23AECEC30001916F /* LoadingBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357A23AECEC30001916F /* LoadingBinding.swift */; };
+		DB44357D23AED9AD0001916F /* PicScapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357C23AED9AD0001916F /* PicScapeView.swift */; };
 		DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3A41323AC252900AD1616 /* ResponseDto.swift */; };
+		DBF7B0CB23AEC16D00971FF0 /* PicScapeLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */; };
+		DBF7B0CE23AEC3A600971FF0 /* LoginBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */; };
+		DBF7B0D123AECADC00971FF0 /* ErrorBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0D023AECADC00971FF0 /* ErrorBinding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,7 +108,12 @@
 		46D4AD44238310A7006106A3 /* PicScapeYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeYouView.swift; sourceTree = "<group>"; };
 		46D4AD4623831344006106A3 /* PicScapeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeApi.swift; sourceTree = "<group>"; };
 		46D781192398619B00AAADC3 /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
+		DB44357A23AECEC30001916F /* LoadingBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBinding.swift; sourceTree = "<group>"; };
+		DB44357C23AED9AD0001916F /* PicScapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeView.swift; sourceTree = "<group>"; };
 		DBA3A41323AC252900AD1616 /* ResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
+		DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeLogin.swift; sourceTree = "<group>"; };
+		DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBinding.swift; sourceTree = "<group>"; };
+		DBF7B0D023AECADC00971FF0 /* ErrorBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBinding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +178,8 @@
 		4681428E233D2B8300E18AE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DBF7B0CF23AECAC600971FF0 /* Error */,
+				DBF7B0CC23AEC19B00971FF0 /* Login */,
 				46D781182398618100AAADC3 /* Loading */,
 				46D032B723940FB600538735 /* Picture */,
 				46D032B623940FA300538735 /* Camera */,
@@ -234,9 +246,9 @@
 		469D218A233BF1C30011A5AF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				46649E1E2381BB3F00755042 /* PicScapeListView.swift */,
-				46649E262381E18200755042 /* PicScapeNewView.swift */,
-				46D4AD44238310A7006106A3 /* PicScapeYouView.swift */,
+				DB44357C23AED9AD0001916F /* PicScapeView.swift */,
+				DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */,
+				DBF7B0C923AEC0F700971FF0 /* ChildViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,9 +283,36 @@
 		46D781182398618100AAADC3 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
+				DB44357A23AECEC30001916F /* LoadingBinding.swift */,
 				46D781192398619B00AAADC3 /* LoadingSpinner.swift */,
 			);
 			path = Loading;
+			sourceTree = "<group>";
+		};
+		DBF7B0C923AEC0F700971FF0 /* ChildViews */ = {
+			isa = PBXGroup;
+			children = (
+				46D4AD44238310A7006106A3 /* PicScapeYouView.swift */,
+				46649E1E2381BB3F00755042 /* PicScapeListView.swift */,
+				46649E262381E18200755042 /* PicScapeNewView.swift */,
+			);
+			path = ChildViews;
+			sourceTree = "<group>";
+		};
+		DBF7B0CC23AEC19B00971FF0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		DBF7B0CF23AECAC600971FF0 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				DBF7B0D023AECADC00971FF0 /* ErrorBinding.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,9 +412,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBF7B0D123AECADC00971FF0 /* ErrorBinding.swift in Sources */,
 				46649E2D2381E94000755042 /* PicScapeNew_Component.swift in Sources */,
 				465601B723412F1400C821FF /* PageControl.swift in Sources */,
 				DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */,
+				DBF7B0CE23AEC3A600971FF0 /* LoginBinding.swift in Sources */,
+				DB44357D23AED9AD0001916F /* PicScapeView.swift in Sources */,
 				46649E1F2381BB3F00755042 /* PicScapeListView.swift in Sources */,
 				465015302393192200A8FAE5 /* ImagePicker.swift in Sources */,
 				46814293233D2BF800E18AE2 /* Picture_Component_Model.swift in Sources */,
@@ -395,7 +437,9 @@
 				46D4AD45238310A7006106A3 /* PicScapeYouView.swift in Sources */,
 				462C3B352353D63B009E85F9 /* PicScapeData.swift in Sources */,
 				46649E272381E18300755042 /* PicScapeNewView.swift in Sources */,
+				DB44357B23AECEC30001916F /* LoadingBinding.swift in Sources */,
 				462C3B332353D61F009E85F9 /* Json.swift in Sources */,
+				DBF7B0CB23AEC16D00971FF0 /* PicScapeLogin.swift in Sources */,
 				46814295233D330400E18AE2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,9 +10,6 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -33,16 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void){
-        if shortcutItem.localizedTitle == "Following"{
-            ContentView.TouchSelect = 0
-        }
-        if shortcutItem.localizedTitle == "All"{
-            ContentView.TouchSelect = 1
-        }
-        if shortcutItem.localizedTitle == "You"{
-            ContentView.TouchSelect = 2
-        }
+//        if shortcutItem.localizedTitle == "Following"{
+//            ContentView.TouchSelect = 0
+//        }
+//        if shortcutItem.localizedTitle == "All"{
+//            ContentView.TouchSelect = 1
+//        }
+//        if shortcutItem.localizedTitle == "You"{
+//            ContentView.TouchSelect = 2
+//        }
     }
-
 }
-
