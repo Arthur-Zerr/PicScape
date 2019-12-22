@@ -57,6 +57,8 @@
 		DB44357D23AED9AD0001916F /* PicScapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357C23AED9AD0001916F /* PicScapeView.swift */; };
 		DB44357F23AEF02B0001916F /* PicScapeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */; };
 		DB44358223AEF22D0001916F /* UserBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44358123AEF22D0001916F /* UserBinding.swift */; };
+		DB44358423AEF8490001916F /* PicScapeRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44358323AEF8490001916F /* PicScapeRegisterView.swift */; };
+		DB44358623AEF98A0001916F /* UserForRegisterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44358523AEF98A0001916F /* UserForRegisterDto.swift */; };
 		DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3A41323AC252900AD1616 /* ResponseDto.swift */; };
 		DBF7B0CB23AEC16D00971FF0 /* PicScapeLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */; };
 		DBF7B0CE23AEC3A600971FF0 /* LoginBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */; };
@@ -114,6 +116,8 @@
 		DB44357C23AED9AD0001916F /* PicScapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeView.swift; sourceTree = "<group>"; };
 		DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeSettingsView.swift; sourceTree = "<group>"; };
 		DB44358123AEF22D0001916F /* UserBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBinding.swift; sourceTree = "<group>"; };
+		DB44358323AEF8490001916F /* PicScapeRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeRegisterView.swift; sourceTree = "<group>"; };
+		DB44358523AEF98A0001916F /* UserForRegisterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserForRegisterDto.swift; sourceTree = "<group>"; };
 		DBA3A41323AC252900AD1616 /* ResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
 		DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeLogin.swift; sourceTree = "<group>"; };
 		DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBinding.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 			children = (
 				DB44357C23AED9AD0001916F /* PicScapeView.swift */,
 				DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */,
+				DB44358323AEF8490001916F /* PicScapeRegisterView.swift */,
 				DBF7B0C923AEC0F700971FF0 /* ChildViews */,
 			);
 			path = Views;
@@ -261,6 +266,7 @@
 			children = (
 				46BABFD82394507600507033 /* UserForLoginDto.swift */,
 				DBA3A41323AC252900AD1616 /* ResponseDto.swift */,
+				DB44358523AEF98A0001916F /* UserForRegisterDto.swift */,
 			);
 			path = Dtos;
 			sourceTree = "<group>";
@@ -436,9 +442,11 @@
 				469D217B233BDDB10011A5AF /* ContentView.swift in Sources */,
 				46D4AD45238310A7006106A3 /* PicScapeYouView.swift in Sources */,
 				462C3B352353D63B009E85F9 /* PicScapeData.swift in Sources */,
+				DB44358623AEF98A0001916F /* UserForRegisterDto.swift in Sources */,
 				46649E272381E18300755042 /* PicScapeNewView.swift in Sources */,
 				DB44357B23AECEC30001916F /* LoadingBinding.swift in Sources */,
 				462C3B332353D61F009E85F9 /* Json.swift in Sources */,
+				DB44358423AEF8490001916F /* PicScapeRegisterView.swift in Sources */,
 				DBF7B0CB23AEC16D00971FF0 /* PicScapeLogin.swift in Sources */,
 				46814295233D330400E18AE2 /* User.swift in Sources */,
 			);

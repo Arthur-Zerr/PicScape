@@ -14,23 +14,53 @@ struct ContentView: View {
     @EnvironmentObject private var loadingData : LoadingBinding
     
     @EnvironmentObject private var userData : UserBinding
-
+    
+    
+    init() {
+        //        UITabBar.appearance().W
+    }
+    
     var body: some View {
         ZStack{
             if self.loginData.hasLogin == true{
-                    PicScapeView()
-                        .environmentObject(loginData)
-                        .environmentObject(errorData)
-                        .environmentObject(loadingData)
-                        .environmentObject(userData)
-                        .edgesIgnoringSafeArea(.top)
-            }
-            if self.loginData.hasLogin == false{
-                PicScapeLogin()
+                PicScapeView()
                     .environmentObject(loginData)
                     .environmentObject(errorData)
                     .environmentObject(loadingData)
-                    .blur(radius: self.loadingData.Loading ? 10: 0)
+                    .environmentObject(userData)
+                    .edgesIgnoringSafeArea(.top)
+            }
+            if self.loginData.hasLogin == false{
+                VStack{
+                    VStack{
+                        Text("PicScape")
+                            .font(.largeTitle)
+                            .fontWeight(.heavy)
+                    }.padding(.init(top: 150, leading: 0, bottom: 0, trailing: 0))
+                    TabView(){
+                        PicScapeLogin()
+                            .environmentObject(loginData)
+                            .environmentObject(errorData)
+                            .environmentObject(loadingData)
+                            .tabItem {
+                                VStack {
+                                    Text("Login")
+                                }
+                        }
+                        .tag(0)
+                        
+                        PicScapeRegisterView()
+                            .environmentObject(loginData)
+                            .environmentObject(errorData)
+                            .environmentObject(loadingData)
+                            .tabItem {
+                                VStack {
+                                    Text("Register")
+                                }
+                        }
+                        .tag(1)
+                    }.blur(radius: self.loadingData.Loading ? 10: 0)
+                }
             }
             if self.loadingData.Loading {
                 VStack{
@@ -50,5 +80,6 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(LoginBinding())
             .environmentObject(ErrorBinding())
             .environmentObject(LoadingBinding())
+            .environmentObject(UserBinding())
     }
 }

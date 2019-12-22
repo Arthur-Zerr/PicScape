@@ -16,11 +16,6 @@ struct PicScapeLogin: View {
     var body: some View {
         VStack{
             VStack{
-                Text("PicScape")
-                    .font(.largeTitle)
-                    .fontWeight(.heavy)
-            }.padding(.init(top: 150, leading: 0, bottom: 0, trailing: 0))
-            VStack{
                 TextField("Username", text: $loginData.Username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 250, height: 50)
