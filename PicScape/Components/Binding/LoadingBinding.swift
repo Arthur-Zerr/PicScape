@@ -10,7 +10,5 @@ import SwiftUI
 import Combine
 
 class LoadingBinding: ObservableObject {
-//    var LoadingWillChange = PassthroughSubject<Void, Never>()
-    
-    @Published var Loading : Bool = false //{ willSet { LoadingWillChange.send() }}
+    @Published var Loading : Bool = false
 }

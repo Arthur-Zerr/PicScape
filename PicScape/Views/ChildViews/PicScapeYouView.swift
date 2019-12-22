@@ -11,37 +11,38 @@ import WaterfallGrid
 import MapKit
 
 struct PicScapeYouView: View {
-    @State var isOnline = false;
     @State var showImagePicker:Bool = false
     @State var showActionSheet:Bool = false
     @State var sourceType:Int = 0
     @State var image:Image?
     
-    var user : User
+    @EnvironmentObject private var userData : UserBinding
+    @EnvironmentObject private var loginData : LoginBinding
     
     var body: some View {
         VStack{
-           if !showImagePicker {
+            if !showImagePicker {
                 VStack{
-                    user.UserPicture?
+                    userData.UserData.UserPicture?
                         .resizable()
                         .clipShape(Circle())
                         .overlay(
                             Circle().stroke(Color.white, lineWidth: 4))
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 160, height: 160)
-
-                    Text(user.Username)
+                        .frame(width: 80, height: 80)
+                    
+                    Text(userData.UserData.Username)
                         .fontWeight(.bold)
-
+                    
                 }
                 VStack{
                     HStack{
                         CameraButtonView(showActionSheet: $showActionSheet)
+                        Button("logout", action: UserLogout).padding()
                     }
                     MapView(coordinate: CLLocationCoordinate2D(
-                    latitude: 1,
-                    longitude: 1))
+                        latitude: 1,
+                        longitude: 1))
                 }
                 .actionSheet(isPresented: $showActionSheet, content: { () -> ActionSheet in
                     ActionSheet(title: Text("Select Image"), message: Text("Please select an image from the image gallery or use the camera"), buttons: [
@@ -59,9 +60,16 @@ struct PicScapeYouView: View {
                 
             }
             if showImagePicker {
+//                TODO: Logout to Settings Page, Add API
                 ImagePicker(isVisibile: $showImagePicker, image: $image, sourceType: sourceType)
             }
         }
+    }
+    
+    func UserLogout()  {
+        self.loginData.Password = ""
+        self.loginData.Username = ""
+        self.loginData.hasLogin = false
     }
 }
 
@@ -69,6 +77,8 @@ struct PicScapeYouView: View {
 
 struct PicScapeYouView_Previews: PreviewProvider {
     static var previews: some View {
-        PicScapeYouView(user: User(id: 1, Username: "Arthur", UserPicUrl: "Arthur", FirstName: "Arthur", LastName: "Zerr", City: "", Country: ""))
+        PicScapeYouView()
+            .environmentObject(UserBinding())
+            .environmentObject(LoginBinding())
     }
 }

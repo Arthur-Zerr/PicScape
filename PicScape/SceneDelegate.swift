@@ -15,6 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let loginData : LoginBinding = LoginBinding()
     private let errorData : ErrorBinding = ErrorBinding()
     private let loadingData : LoadingBinding = LoadingBinding()
+    private let userData : UserBinding = UserBinding()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -26,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environmentObject(loginData)
             .environmentObject(errorData)
             .environmentObject(loadingData)
+            .environmentObject(userData)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

@@ -12,11 +12,18 @@ struct ContentView: View {
     @EnvironmentObject private var loginData : LoginBinding
     @EnvironmentObject private var errorData : ErrorBinding
     @EnvironmentObject private var loadingData : LoadingBinding
+    
+    @EnvironmentObject private var userData : UserBinding
 
     var body: some View {
         ZStack{
             if self.loginData.hasLogin == true{
-                    PicScapeView().edgesIgnoringSafeArea(.top)
+                    PicScapeView()
+                        .environmentObject(loginData)
+                        .environmentObject(errorData)
+                        .environmentObject(loadingData)
+                        .environmentObject(userData)
+                        .edgesIgnoringSafeArea(.top)
             }
             if self.loginData.hasLogin == false{
                 PicScapeLogin()

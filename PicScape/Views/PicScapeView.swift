@@ -9,6 +9,11 @@
 import SwiftUI
 
 struct PicScapeView: View {
+    @EnvironmentObject private var loginData : LoginBinding
+    @EnvironmentObject private var errorData : ErrorBinding
+    @EnvironmentObject private var loadingData : LoadingBinding
+    @EnvironmentObject private var userData : UserBinding
+    
     var body: some View {
         TabView(){
             PicScapeListView()
@@ -27,7 +32,9 @@ struct PicScapeView: View {
                     }
             }
             .tag(1)
-            PicScapeYouView(user: User(id: 1, Username: "Arthur", UserPicUrl: "Arthur", FirstName: "Arthur", LastName: "Zerr", City: "", Country: ""))
+            PicScapeYouView()
+                .environmentObject(userData)
+                .environmentObject(loginData)
                 .tabItem {
                     VStack {
                         Image("User_icon")
@@ -42,5 +49,6 @@ struct PicScapeView: View {
 struct PicScapeView_Previews: PreviewProvider {
     static var previews: some View {
         PicScapeView()
+            .environmentObject(UserBinding())
     }
 }

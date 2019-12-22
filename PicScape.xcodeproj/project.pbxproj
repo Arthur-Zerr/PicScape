@@ -55,6 +55,8 @@
 		46D7811A2398619B00AAADC3 /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D781192398619B00AAADC3 /* LoadingSpinner.swift */; };
 		DB44357B23AECEC30001916F /* LoadingBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357A23AECEC30001916F /* LoadingBinding.swift */; };
 		DB44357D23AED9AD0001916F /* PicScapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357C23AED9AD0001916F /* PicScapeView.swift */; };
+		DB44357F23AEF02B0001916F /* PicScapeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */; };
+		DB44358223AEF22D0001916F /* UserBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44358123AEF22D0001916F /* UserBinding.swift */; };
 		DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3A41323AC252900AD1616 /* ResponseDto.swift */; };
 		DBF7B0CB23AEC16D00971FF0 /* PicScapeLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */; };
 		DBF7B0CE23AEC3A600971FF0 /* LoginBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */; };
@@ -110,6 +112,8 @@
 		46D781192398619B00AAADC3 /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
 		DB44357A23AECEC30001916F /* LoadingBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBinding.swift; sourceTree = "<group>"; };
 		DB44357C23AED9AD0001916F /* PicScapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeView.swift; sourceTree = "<group>"; };
+		DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeSettingsView.swift; sourceTree = "<group>"; };
+		DB44358123AEF22D0001916F /* UserBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBinding.swift; sourceTree = "<group>"; };
 		DBA3A41323AC252900AD1616 /* ResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
 		DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeLogin.swift; sourceTree = "<group>"; };
 		DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBinding.swift; sourceTree = "<group>"; };
@@ -178,8 +182,7 @@
 		4681428E233D2B8300E18AE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				DBF7B0CF23AECAC600971FF0 /* Error */,
-				DBF7B0CC23AEC19B00971FF0 /* Login */,
+				DB44358023AEF2010001916F /* Binding */,
 				46D781182398618100AAADC3 /* Loading */,
 				46D032B723940FB600538735 /* Picture */,
 				46D032B623940FA300538735 /* Camera */,
@@ -283,10 +286,20 @@
 		46D781182398618100AAADC3 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
-				DB44357A23AECEC30001916F /* LoadingBinding.swift */,
 				46D781192398619B00AAADC3 /* LoadingSpinner.swift */,
 			);
 			path = Loading;
+			sourceTree = "<group>";
+		};
+		DB44358023AEF2010001916F /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				DBF7B0D023AECADC00971FF0 /* ErrorBinding.swift */,
+				DB44357A23AECEC30001916F /* LoadingBinding.swift */,
+				DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */,
+				DB44358123AEF22D0001916F /* UserBinding.swift */,
+			);
+			path = Binding;
 			sourceTree = "<group>";
 		};
 		DBF7B0C923AEC0F700971FF0 /* ChildViews */ = {
@@ -295,24 +308,9 @@
 				46D4AD44238310A7006106A3 /* PicScapeYouView.swift */,
 				46649E1E2381BB3F00755042 /* PicScapeListView.swift */,
 				46649E262381E18200755042 /* PicScapeNewView.swift */,
+				DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */,
 			);
 			path = ChildViews;
-			sourceTree = "<group>";
-		};
-		DBF7B0CC23AEC19B00971FF0 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		DBF7B0CF23AECAC600971FF0 /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				DBF7B0D023AECADC00971FF0 /* ErrorBinding.swift */,
-			);
-			path = Error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +416,7 @@
 				DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */,
 				DBF7B0CE23AEC3A600971FF0 /* LoginBinding.swift in Sources */,
 				DB44357D23AED9AD0001916F /* PicScapeView.swift in Sources */,
+				DB44358223AEF22D0001916F /* UserBinding.swift in Sources */,
 				46649E1F2381BB3F00755042 /* PicScapeListView.swift in Sources */,
 				465015302393192200A8FAE5 /* ImagePicker.swift in Sources */,
 				46814293233D2BF800E18AE2 /* Picture_Component_Model.swift in Sources */,
@@ -433,6 +432,7 @@
 				4650153223931BB500A8FAE5 /* CameraButtonView.swift in Sources */,
 				46649E292381E5AF00755042 /* Picture_Model.swift in Sources */,
 				465601B823412F1400C821FF /* PageView.swift in Sources */,
+				DB44357F23AEF02B0001916F /* PicScapeSettingsView.swift in Sources */,
 				469D217B233BDDB10011A5AF /* ContentView.swift in Sources */,
 				46D4AD45238310A7006106A3 /* PicScapeYouView.swift in Sources */,
 				462C3B352353D63B009E85F9 /* PicScapeData.swift in Sources */,
