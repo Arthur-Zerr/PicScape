@@ -10,7 +10,7 @@ import SwiftUI
 import WaterfallGrid
 import MapKit
 
-struct PicScapeYouView: View {
+struct PicScapeMeView: View {
     @State var showImagePicker:Bool = false
     @State var showActionSheet:Bool = false
     @State var sourceType:Int = 0
@@ -25,13 +25,13 @@ struct PicScapeYouView: View {
         VStack{
             if !showImagePicker {
                 VStack{
-                    userData.UserData.UserPicture?
-                        .resizable()
-                        .clipShape(Circle())
-                        .overlay(
-                            Circle().stroke(Color.white, lineWidth: 4))
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 80, height: 80)
+//                    userData.UserData.UserPicture?
+//                        .resizable()
+//                        .clipShape(Circle())
+//                        .overlay(
+//                            Circle().stroke(Color.white, lineWidth: 4))
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(width: 80, height: 80)
                     
                     Text(userData.UserData.Username)
                         .fontWeight(.bold)
@@ -74,7 +74,7 @@ struct PicScapeYouView: View {
             switch result {
             case .success(let responseData):
                 if responseData.success == true {
-                    self.ShowError(message: "Success API Token\(responseData.message)")
+                    self.ShowError(message: responseData.message)
                     self.loadingData.Loading = false
                 }
                 else {
@@ -105,9 +105,9 @@ struct PicScapeYouView: View {
 
 
 
-struct PicScapeYouView_Previews: PreviewProvider {
+struct PicScapeMeView_Previews: PreviewProvider {
     static var previews: some View {
-        PicScapeYouView()
+        PicScapeMeView()
             .environmentObject(UserBinding())
             .environmentObject(LoginBinding())
             .environmentObject(ErrorBinding())

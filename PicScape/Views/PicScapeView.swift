@@ -32,7 +32,7 @@ struct PicScapeView: View {
                     }
             }
             .tag(1)
-            PicScapeYouView()
+            PicScapeMeView()
                 .environmentObject(userData)
                 .environmentObject(loginData)
                 .environmentObject(errorData)
@@ -40,7 +40,7 @@ struct PicScapeView: View {
                 .tabItem {
                     VStack {
                         Image("User_icon")
-                        Text("You")
+                        Text("Me")
                     }
             }
             .tag(2)

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-struct Picture_Model:  Hashable, Codable, Identifiable {
+struct PictureModel:  Hashable, Codable, Identifiable {
     
     var id: Int
     var PicUrl: String
@@ -23,7 +23,7 @@ struct Picture_Model:  Hashable, Codable, Identifiable {
     }
 }
 
-extension Picture_Model {
+extension PictureModel {
     var image: Image {
         ImageStore.shared.image(name: PicUrl)
     }

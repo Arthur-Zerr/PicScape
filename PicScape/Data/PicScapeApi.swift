@@ -11,7 +11,7 @@ import Foundation
 
 public class PicScapeAPI: NSObject{
     static var url : String = "http://192.168.178.96:5000"
-    static var PicScapeApiSession = Session(configuration: URLSessionConfiguration.default,interceptor: JwtTokenInterceptor())
+    static var PicScapeApiSession = Session(configuration: URLSessionConfiguration.default, interceptor: JwtTokenInterceptor())
     
     // MARK: - Auth
     static func Login(loginData : UserForLoginDto, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
@@ -49,14 +49,11 @@ public class PicScapeAPI: NSObject{
     // MARK: - Testing
     static func IsOnline(completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
         let Param = ["" : ""]
-        let jwtHeader : HTTPHeader = HTTPHeader.authorization(bearerToken: PicScapeKeychain.GetAPIToken())
-        let authHeaders = HTTPHeaders(arrayLiteral: jwtHeader)
         
         PicScapeApiSession.request(url + "/User/IsOnline",
                    method: .get,
                    parameters: Param,
                    encoder: URLEncodedFormParameterEncoder.default
-//                   headers: authHeaders
         ).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
                     completion(response.result)
             })

@@ -11,16 +11,17 @@ import SwiftUI
 struct PicScapeListView: View {
     var body: some View {
         ZStack{
-            ScrollView{
-                ForEach(PicScapeData){ picscapedata in
-                    Spacer()
-                    Spacer()
-                    Picture_Component(pictureData: picscapedata, ShowInfo: true)
-                    Spacer()
-                    Spacer()
-                }
-                Spacer()
-            }
+//            ScrollView{
+//                ForEach(PicScapeData){ picscapedata in
+//                    Spacer()
+//                    Spacer()
+//                    Picture_Component(pictureData: picscapedata, ShowInfo: true)
+//                    Spacer()
+//                    Spacer()
+//                }
+//                Spacer()
+//            }
+            Text("In Development")
         }
     }
 }

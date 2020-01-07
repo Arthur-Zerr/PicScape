@@ -9,8 +9,8 @@
 import SwiftUI
 import CoreLocation
 
-struct Picture_Component: View {
-    var pictureData: Picture_Component_Model
+struct PictureComponent: View {
+    var pictureData: PictureComponentModel
     var ShowInfo : Bool
     var body: some View {
         VStack{
@@ -37,8 +37,8 @@ struct Picture_Component: View {
     }
 }
 
-struct Picture_Component_Previews: PreviewProvider {
+struct PictureComponentPreviews: PreviewProvider {
     static var previews: some View {
-        Picture_Component(pictureData: PicScapeData[1], ShowInfo: true)
+        PictureComponent(pictureData : PictureComponentModel(id: 0, PicUrl: "", Title: "", Cor_X: 0, Cor_Y: 0, UserId: 0, UserName: ""),ShowInfo: true)
     }
 }
