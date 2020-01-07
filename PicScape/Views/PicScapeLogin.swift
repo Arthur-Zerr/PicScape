@@ -12,6 +12,7 @@ struct PicScapeLogin: View {
     @EnvironmentObject private var loginData : LoginBinding
     @EnvironmentObject private var errorData : ErrorBinding
     @EnvironmentObject private var loadingData : LoadingBinding
+    @EnvironmentObject private var userData : UserBinding
     
     var body: some View {
         VStack{
@@ -19,36 +20,52 @@ struct PicScapeLogin: View {
                 TextField("Username", text: $loginData.Username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 250, height: 50)
+                    
                 SecureField("Password", text: $loginData.Password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 250, height: 50)
-                Button("Login", action: UserLogin).padding()
+                Button("Login", action: Login).padding()
             }.animation(Animation.easeIn(duration: 5).delay(2))
                 .padding(.init(top: 150, leading: 0, bottom: 0, trailing: 0))
             Spacer()
-        }
+        }.onAppear(){
+            if PicScapeKeychain.HasUserData() {
+                self.UserLogin(Username: PicScapeKeychain.GetUserUsername(), Password: PicScapeKeychain.GetUserPassword() )
+            }
+        }.disabled(self.loadingData.Loading)
     }
     
-    func UserLogin(){
+    func Login() {
+        UserLogin(Username: loginData.Username, Password: loginData.Password)
+    }
+    
+    func UserLogin(Username: String, Password: String){
         self.loadingData.Loading = true
-        PicScapeAPI.Login(loginData: self.loginData){ result in
+        let login = UserForLoginDto(Username: Username, Password: Password)
+        PicScapeAPI.Login(loginData: login){ result in
             switch result {
             case .success(let responseData):
                 if responseData.success == true {
+                    PicScapeKeychain.SaveUserData(Username: Username, Password: Password)
+                    PicScapeKeychain.SaveAPIToken(Token: responseData.data)
                     self.loginData.hasLogin = true
+                    self.loadingData.Loading = false
                 }
                 else {
-                    print(responseData.message)
-                    self.errorData.Message = responseData.message
-                    self.errorData.hasError = true
+                    self.ShowError(message : responseData.message)
+                    self.loadingData.Loading = false
                 }
             case .failure(let error):
-                print(error)
-                self.errorData.Message = error.localizedDescription
-                self.errorData.hasError = true
+                self.ShowError(message : error.localizedDescription)
+                self.loadingData.Loading = false
             }
         }
-        self.loadingData.Loading = false
+    }
+    
+    func ShowError(message : String) {
+        print(message)
+        self.errorData.Message = message
+        self.errorData.hasError = true
     }
 }
 

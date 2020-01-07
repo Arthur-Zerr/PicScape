@@ -35,6 +35,8 @@ struct PicScapeView: View {
             PicScapeYouView()
                 .environmentObject(userData)
                 .environmentObject(loginData)
+                .environmentObject(errorData)
+                .environmentObject(loadingData)
                 .tabItem {
                     VStack {
                         Image("User_icon")

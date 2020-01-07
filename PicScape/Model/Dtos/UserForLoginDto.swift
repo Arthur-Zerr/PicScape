@@ -9,8 +9,6 @@
 import Foundation
 
 struct UserForLoginDto : Encodable{
-    
     var Username : String
     var Password: String
-    
 }

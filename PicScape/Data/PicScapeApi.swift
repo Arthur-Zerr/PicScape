@@ -7,16 +7,17 @@
 //
 
 import Alamofire
+import Foundation
 
-public class PicScapeAPI {
+public class PicScapeAPI: NSObject{
     static var url : String = "http://192.168.178.96:5000"
+    static var PicScapeApiSession = Session(configuration: URLSessionConfiguration.default,interceptor: JwtTokenInterceptor())
     
-    static func Login(loginData : LoginBinding, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
-        let login = UserForLoginDto(Username: loginData.Username, Password: loginData.Password)
-        
+    // MARK: - Auth
+    static func Login(loginData : UserForLoginDto, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
         AF.request(url + "/Auth/Login",
                    method: .post,
-                   parameters: login,
+                   parameters: loginData,
                    encoder: JSONParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
                     completion(response.result)
                    })
@@ -31,47 +32,33 @@ public class PicScapeAPI {
                    })
     }
     
-    static func getIsOnline() -> Bool {
-        //        let request = RestRequest(method: .get, url: url + "/api/User/IsOnline")
-        //        var onlineResult : Bool = false
-        //
-        //        let syncConc = DispatchQueue(label:"con",attributes:.concurrent)
-        //        let group = DispatchGroup()
-        //        group.enter()
-        //        syncConc.sync  {
-        //            request.responseVoid{ result in
-        //                switch result {
-        //                case .success( _):
-        //                        onlineResult = true
-        //                        break
-        //                case .failure( let error):
-        //                    print(error)
-        //                    onlineResult = false
-        //                    break
-        //                }
-        //            }
-        //            group.leave()
-        //        }
-        //        group.notify(queue: syncConc)
-        //        {
-        //            return onlineResult
-        //        }
-        return false
+    // MARK: - User
+    static func GetUserData(userId : String, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        let Param  = [
+            "id": userId
+        ]
+        
+        PicScapeApiSession.request(url + "/User/UserData",
+                   method: .get,
+                   parameters: Param,
+                   encoder: URLEncodedFormParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                    completion(response.result)
+                   })
     }
     
-    
-    static func getImageWithId(id : Int){
-        //        let request = RestRequest(method: .get, url: url  + "/api/Picture/Picture")
-        //
-        //        request.responseData { result in
-        //            switch result {
-        //            case .success(_):
-        //                break
-        //            case .failure(let error):
-        //                print(error)
-        //            }
-        //        }
+    // MARK: - Testing
+    static func IsOnline(completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        let Param = ["" : ""]
+        let jwtHeader : HTTPHeader = HTTPHeader.authorization(bearerToken: PicScapeKeychain.GetAPIToken())
+        let authHeaders = HTTPHeaders(arrayLiteral: jwtHeader)
         
+        PicScapeApiSession.request(url + "/User/IsOnline",
+                   method: .get,
+                   parameters: Param,
+                   encoder: URLEncodedFormParameterEncoder.default
+//                   headers: authHeaders
+        ).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                    completion(response.result)
+            })
     }
 }
-

@@ -18,6 +18,8 @@ struct PicScapeYouView: View {
     
     @EnvironmentObject private var userData : UserBinding
     @EnvironmentObject private var loginData : LoginBinding
+    @EnvironmentObject private var errorData : ErrorBinding
+    @EnvironmentObject private var loadingData : LoadingBinding
     
     var body: some View {
         VStack{
@@ -33,12 +35,12 @@ struct PicScapeYouView: View {
                     
                     Text(userData.UserData.Username)
                         .fontWeight(.bold)
-                    
                 }
                 VStack{
                     HStack{
                         CameraButtonView(showActionSheet: $showActionSheet)
                         Button("logout", action: UserLogout).padding()
+                        Button("Test Auth", action: TestAuth).padding()
                     }
                     MapView(coordinate: CLLocationCoordinate2D(
                         latitude: 1,
@@ -66,10 +68,38 @@ struct PicScapeYouView: View {
         }
     }
     
+    func TestAuth() {
+        self.loadingData.Loading = false
+        PicScapeAPI.IsOnline(){ result in
+            switch result {
+            case .success(let responseData):
+                if responseData.success == true {
+                    self.ShowError(message: "Success API Token\(responseData.message)")
+                    self.loadingData.Loading = false
+                }
+                else {
+                    self.ShowError(message : responseData.message)
+                    self.loadingData.Loading = false
+                }
+            case .failure(let error):
+                self.ShowError(message : error.localizedDescription)
+                self.loadingData.Loading = false
+            }
+        }
+    }
+    
     func UserLogout()  {
         self.loginData.Password = ""
         self.loginData.Username = ""
         self.loginData.hasLogin = false
+        PicScapeKeychain.RemoveAPIToken()
+        PicScapeKeychain.RemoveUserData()
+    }
+    
+    func ShowError(message : String) {
+        print(message)
+        self.errorData.Message = message
+        self.errorData.hasError = true
     }
 }
 
@@ -80,5 +110,6 @@ struct PicScapeYouView_Previews: PreviewProvider {
         PicScapeYouView()
             .environmentObject(UserBinding())
             .environmentObject(LoginBinding())
+            .environmentObject(ErrorBinding())
     }
 }
