@@ -24,14 +24,15 @@ struct PicScapeLogin: View {
                 SecureField("Password", text: $loginData.Password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .frame(width: 250, height: 50)
-                Button("Login", action: Login).padding()
+                Button("Login", action: Login)
+                    .padding()
+                    .accentColor(Color("ButtonColor"))
             }.animation(Animation.easeIn(duration: 5).delay(2))
-                .padding(.init(top: 150, leading: 0, bottom: 0, trailing: 0))
-            Spacer()
+                .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         }.onAppear(){
             if PicScapeKeychain.HasUserData() {
                 self.UserLogin(Username: PicScapeKeychain.GetUserUsername(), Password: PicScapeKeychain.GetUserPassword() )
-            }
+            } 
         }.disabled(self.loadingData.Loading)
     }
     
@@ -50,22 +51,49 @@ struct PicScapeLogin: View {
                     PicScapeKeychain.SaveAPIToken(Token: responseData.data)
                     self.loginData.hasLogin = true
                     self.loadingData.Loading = false
+                    self.loadUserData(username: Username)
+                    self.loadUserPicture(username: Username)
                 }
                 else {
-                    self.ShowError(message : responseData.message)
+                    self.errorData.ShowError(message : responseData.message)
                     self.loadingData.Loading = false
                 }
             case .failure(let error):
-                self.ShowError(message : error.localizedDescription)
+                self.errorData.ShowError(message : error.localizedDescription)
                 self.loadingData.Loading = false
             }
         }
     }
     
-    func ShowError(message : String) {
-        print(message)
-        self.errorData.Message = message
-        self.errorData.hasError = true
+    func loadUserData(username : String){
+        self.loadingData.Loading = true
+        PicScapeAPI.GetUserData(userId: username){result in
+            switch result {
+            case .success(let responseData):
+                if(responseData.success == true){
+                    self.userData.UserData = JsonConverter.convert(jsonString: responseData.data, as: User.self)
+                    self.loadingData.Loading = false
+                }
+            case .failure(let error):
+                self.errorData.ShowError(message : error.localizedDescription)
+                self.loadingData.Loading = false
+            }
+        }
+    }
+    
+    func loadUserPicture(username : String){
+        self.loadingData.Loading = true
+        PicScapeAPI.GetUserPicture(Username: username) {result in
+            switch result{
+            case .success(let responseimage):
+                self.userData.UserPicture = Image(decorative: responseimage.cgImage!, scale: 1)
+                debugPrint(responseimage)
+                self.loadingData.Loading = false
+            case .failure(let error):
+                self.errorData.ShowError(message: error.localizedDescription)
+                self.loadingData.Loading = false
+            }
+        }
     }
 }
 

@@ -25,10 +25,8 @@ struct CameraButtonView: View {
                     Image(systemName: "camera.fill")
                         .foregroundColor(.black)
                 )
-                
             )
         }
-        
     }
 }
 

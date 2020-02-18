@@ -23,8 +23,12 @@ struct PictureComponentModel: Hashable, Codable, Identifiable {
     //Basic User Info
     var UserId: Int
     var UserName: String
-    
-    
+}
+
+extension PictureComponentModel {
+    var image: Image {
+        ImageStore.shared.image(name: PicUrl)
+    }
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
             latitude: Cor_Y,
@@ -36,10 +40,4 @@ struct PictureComponentModel: Hashable, Codable, Identifiable {
                scale: 2,
                label: Text(verbatim: Title))
        }
-}
-
-extension PictureComponentModel {
-    var image: Image {
-        ImageStore.shared.image(name: PicUrl)
-    }
 }

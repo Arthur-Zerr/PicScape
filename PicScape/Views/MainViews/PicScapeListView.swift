@@ -9,18 +9,17 @@
 import SwiftUI
 
 struct PicScapeListView: View {
+    
+@EnvironmentObject private var userData : UserBinding
+    
     var body: some View {
-        ZStack{
-//            ScrollView{
-//                ForEach(PicScapeData){ picscapedata in
-//                    Spacer()
-//                    Spacer()
-//                    Picture_Component(pictureData: picscapedata, ShowInfo: true)
-//                    Spacer()
-//                    Spacer()
-//                }
-//                Spacer()
-//            }
+        VStack{
+            userData.UserPicture?
+                .resizable()
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color("InvertColor"), lineWidth: 4))
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 75, height: 75)
             Text("In Development")
         }
     }
@@ -29,5 +28,6 @@ struct PicScapeListView: View {
 struct PicScapeListView_Previews: PreviewProvider {
     static var previews: some View {
         PicScapeListView()
+        .environmentObject(UserBinding())
     }
 }

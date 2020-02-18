@@ -9,23 +9,17 @@
 import Foundation
 import SwiftUI
 
-struct User: Hashable, Codable, Identifiable {
+struct User: Codable, Hashable{
     
-    var id: Int
+    var Id: String
     var Username: String
     
-    var UserPicUrl: String
+    //var UserPicUrl: String
     
-    var FirstName: String
+    var Firstname: String
     var LastName: String
     
     var City: String
     var Country: String
     
-    var UserPicture : Image? {
-        return Image(
-            ImageStore.loadImage(name: "\(UserPicUrl)"),
-            scale: 2,
-            label: Text(verbatim: UserPicUrl))
-    }
 }

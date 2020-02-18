@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		462C3B332353D61F009E85F9 /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462C3B322353D61F009E85F9 /* Json.swift */; };
-		462C3B372353D80C009E85F9 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462C3B362353D80C009E85F9 /* ImageStore.swift */; };
 		465015302393192200A8FAE5 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650152F2393192200A8FAE5 /* ImagePicker.swift */; };
 		4650153223931BB500A8FAE5 /* CameraButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4650153123931BB500A8FAE5 /* CameraButtonView.swift */; };
 		46649E1F2381BB3F00755042 /* PicScapeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46649E1E2381BB3F00755042 /* PicScapeListView.swift */; };
@@ -30,17 +29,22 @@
 		46D4AD45238310A7006106A3 /* PicScapeMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD44238310A7006106A3 /* PicScapeMeView.swift */; };
 		46D4AD4723831344006106A3 /* PicScapeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D4AD4623831344006106A3 /* PicScapeApi.swift */; };
 		46D7811A2398619B00AAADC3 /* LoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D781192398619B00AAADC3 /* LoadingSpinner.swift */; };
+		DB3C225123C54A56002CD498 /* UserForLogoutDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3C225023C54A56002CD498 /* UserForLogoutDto.swift */; };
 		DB44357B23AECEC30001916F /* LoadingBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357A23AECEC30001916F /* LoadingBinding.swift */; };
 		DB44357D23AED9AD0001916F /* PicScapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357C23AED9AD0001916F /* PicScapeView.swift */; };
 		DB44357F23AEF02B0001916F /* PicScapeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */; };
 		DB44358223AEF22D0001916F /* UserBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44358123AEF22D0001916F /* UserBinding.swift */; };
 		DB44358423AEF8490001916F /* PicScapeRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44358323AEF8490001916F /* PicScapeRegisterView.swift */; };
 		DB44358623AEF98A0001916F /* UserForRegisterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB44358523AEF98A0001916F /* UserForRegisterDto.swift */; };
+		DB6EDCD123C8CEEF00A6736F /* ButtonSettingStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6EDCD023C8CEEF00A6736F /* ButtonSettingStyle.swift */; };
+		DB8AD27823DA390C007AFCF1 /* JsonConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8AD27723DA390C007AFCF1 /* JsonConverter.swift */; };
 		DB905E9523C014B100A7C513 /* PicScapeKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB905E9423C014B100A7C513 /* PicScapeKeychain.swift */; };
 		DB905E9E23C1935800A7C513 /* JwtTokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB905E9D23C1935800A7C513 /* JwtTokenInterceptor.swift */; };
 		DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3A41323AC252900AD1616 /* ResponseDto.swift */; };
+		DBA903FB23F6D0C3002AD1CA /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = DBA903FA23F6D0C3002AD1CA /* AlamofireImage */; };
 		DBB19B4923C3892100890494 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB19B4723C3892100890494 /* KeychainItemAccessibility.swift */; };
 		DBB19B4A23C3892100890494 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB19B4823C3892100890494 /* KeychainWrapper.swift */; };
+		DBF6BFE623FC0BC900F73100 /* PicScapeRegisterMoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF6BFE523FC0BC900F73100 /* PicScapeRegisterMoreInfoView.swift */; };
 		DBF7B0CB23AEC16D00971FF0 /* PicScapeLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */; };
 		DBF7B0CE23AEC3A600971FF0 /* LoginBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */; };
 		DBF7B0D123AECADC00971FF0 /* ErrorBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF7B0D023AECADC00971FF0 /* ErrorBinding.swift */; };
@@ -48,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		462C3B322353D61F009E85F9 /* Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
-		462C3B362353D80C009E85F9 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		4650152F2393192200A8FAE5 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4650153123931BB500A8FAE5 /* CameraButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraButtonView.swift; sourceTree = "<group>"; };
 		46649E1E2381BB3F00755042 /* PicScapeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeListView.swift; sourceTree = "<group>"; };
@@ -70,17 +73,21 @@
 		46D4AD44238310A7006106A3 /* PicScapeMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeMeView.swift; sourceTree = "<group>"; };
 		46D4AD4623831344006106A3 /* PicScapeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeApi.swift; sourceTree = "<group>"; };
 		46D781192398619B00AAADC3 /* LoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSpinner.swift; sourceTree = "<group>"; };
+		DB3C225023C54A56002CD498 /* UserForLogoutDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserForLogoutDto.swift; sourceTree = "<group>"; };
 		DB44357A23AECEC30001916F /* LoadingBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBinding.swift; sourceTree = "<group>"; };
 		DB44357C23AED9AD0001916F /* PicScapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeView.swift; sourceTree = "<group>"; };
 		DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeSettingsView.swift; sourceTree = "<group>"; };
 		DB44358123AEF22D0001916F /* UserBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBinding.swift; sourceTree = "<group>"; };
 		DB44358323AEF8490001916F /* PicScapeRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeRegisterView.swift; sourceTree = "<group>"; };
 		DB44358523AEF98A0001916F /* UserForRegisterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserForRegisterDto.swift; sourceTree = "<group>"; };
+		DB6EDCD023C8CEEF00A6736F /* ButtonSettingStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSettingStyle.swift; sourceTree = "<group>"; };
+		DB8AD27723DA390C007AFCF1 /* JsonConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonConverter.swift; sourceTree = "<group>"; };
 		DB905E9423C014B100A7C513 /* PicScapeKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeKeychain.swift; sourceTree = "<group>"; };
 		DB905E9D23C1935800A7C513 /* JwtTokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtTokenInterceptor.swift; sourceTree = "<group>"; };
 		DBA3A41323AC252900AD1616 /* ResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
 		DBB19B4723C3892100890494 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		DBB19B4823C3892100890494 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		DBF6BFE523FC0BC900F73100 /* PicScapeRegisterMoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeRegisterMoreInfoView.swift; sourceTree = "<group>"; };
 		DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicScapeLogin.swift; sourceTree = "<group>"; };
 		DBF7B0CD23AEC3A600971FF0 /* LoginBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBinding.swift; sourceTree = "<group>"; };
 		DBF7B0D023AECADC00971FF0 /* ErrorBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBinding.swift; sourceTree = "<group>"; };
@@ -93,28 +100,22 @@
 			files = (
 				46649E252381E14A00755042 /* WaterfallGrid in Frameworks */,
 				46BABFDC239452BD00507033 /* Alamofire in Frameworks */,
+				DBA903FB23F6D0C3002AD1CA /* AlamofireImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		462C3B2E2353D474009E85F9 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		462C3B312353D5F9009E85F9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				DB905E8F23C0127100A7C513 /* KeychainWrapper */,
 				462C3B322353D61F009E85F9 /* Json.swift */,
-				462C3B362353D80C009E85F9 /* ImageStore.swift */,
 				DB905E9423C014B100A7C513 /* PicScapeKeychain.swift */,
 				46D4AD4623831344006106A3 /* PicScapeApi.swift */,
 				DB905E9D23C1935800A7C513 /* JwtTokenInterceptor.swift */,
+				DB8AD27723DA390C007AFCF1 /* JsonConverter.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -160,15 +161,17 @@
 		469D2175233BDDB10011A5AF /* PicScape */ = {
 			isa = PBXGroup;
 			children = (
+				DB6EDCCE23C8CED100A6736F /* Style */,
 				DB44358023AEF2010001916F /* Binding */,
 				462C3B312353D5F9009E85F9 /* Data */,
-				462C3B2E2353D474009E85F9 /* Resources */,
 				46814291233D2BDB00E18AE2 /* Model */,
 				4681428E233D2B8300E18AE2 /* Components */,
+				DBF6BFE723FC1A3600F73100 /* Viewmodels */,
 				469D218A233BF1C30011A5AF /* Views */,
-				469D2176233BDDB10011A5AF /* AppDelegate.swift */,
 				469D2178233BDDB10011A5AF /* SceneDelegate.swift */,
+				469D2176233BDDB10011A5AF /* AppDelegate.swift */,
 				469D217A233BDDB10011A5AF /* ContentView.swift */,
+				DB44357C23AED9AD0001916F /* PicScapeView.swift */,
 				469D217C233BDDB20011A5AF /* Assets.xcassets */,
 				469D2181233BDDB30011A5AF /* LaunchScreen.storyboard */,
 				469D2184233BDDB30011A5AF /* Info.plist */,
@@ -188,10 +191,8 @@
 		469D218A233BF1C30011A5AF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DB44357C23AED9AD0001916F /* PicScapeView.swift */,
-				DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */,
-				DB44358323AEF8490001916F /* PicScapeRegisterView.swift */,
-				DBF7B0C923AEC0F700971FF0 /* ChildViews */,
+				DBF7B0C923AEC0F700971FF0 /* MainViews */,
+				DB6EDCD223C92FCE00A6736F /* ChildViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -202,6 +203,7 @@
 				46BABFD82394507600507033 /* UserForLoginDto.swift */,
 				DBA3A41323AC252900AD1616 /* ResponseDto.swift */,
 				DB44358523AEF98A0001916F /* UserForRegisterDto.swift */,
+				DB3C225023C54A56002CD498 /* UserForLogoutDto.swift */,
 			);
 			path = Dtos;
 			sourceTree = "<group>";
@@ -242,6 +244,32 @@
 			path = Binding;
 			sourceTree = "<group>";
 		};
+		DB6EDCCE23C8CED100A6736F /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				DB6EDCCF23C8CED900A6736F /* Button */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		DB6EDCCF23C8CED900A6736F /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				DB6EDCD023C8CEEF00A6736F /* ButtonSettingStyle.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		DB6EDCD223C92FCE00A6736F /* ChildViews */ = {
+			isa = PBXGroup;
+			children = (
+				DBF6BFE423FC0B9100F73100 /* RegisterChildViews */,
+				DBF7B0CA23AEC16D00971FF0 /* PicScapeLogin.swift */,
+				DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */,
+			);
+			path = ChildViews;
+			sourceTree = "<group>";
+		};
 		DB905E8F23C0127100A7C513 /* KeychainWrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,15 +279,30 @@
 			path = KeychainWrapper;
 			sourceTree = "<group>";
 		};
-		DBF7B0C923AEC0F700971FF0 /* ChildViews */ = {
+		DBF6BFE423FC0B9100F73100 /* RegisterChildViews */ = {
+			isa = PBXGroup;
+			children = (
+				DB44358323AEF8490001916F /* PicScapeRegisterView.swift */,
+				DBF6BFE523FC0BC900F73100 /* PicScapeRegisterMoreInfoView.swift */,
+			);
+			path = RegisterChildViews;
+			sourceTree = "<group>";
+		};
+		DBF6BFE723FC1A3600F73100 /* Viewmodels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Viewmodels;
+			sourceTree = "<group>";
+		};
+		DBF7B0C923AEC0F700971FF0 /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
 				46D4AD44238310A7006106A3 /* PicScapeMeView.swift */,
 				46649E1E2381BB3F00755042 /* PicScapeListView.swift */,
 				46649E262381E18200755042 /* PicScapeNewView.swift */,
-				DB44357E23AEF02B0001916F /* PicScapeSettingsView.swift */,
 			);
-			path = ChildViews;
+			path = MainViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +324,7 @@
 			packageProductDependencies = (
 				46649E242381E14A00755042 /* WaterfallGrid */,
 				46BABFDB239452BD00507033 /* Alamofire */,
+				DBA903FA23F6D0C3002AD1CA /* AlamofireImage */,
 			);
 			productName = PicScape;
 			productReference = 469D2173233BDDB10011A5AF /* PicScape.app */;
@@ -313,6 +357,7 @@
 			packageReferences = (
 				46649E232381E14A00755042 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 				46BABFDA239452BD00507033 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DBA903F923F6D0C3002AD1CA /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = 469D2174233BDDB10011A5AF /* Products */;
 			projectDirPath = "";
@@ -343,6 +388,7 @@
 			files = (
 				DBF7B0D123AECADC00971FF0 /* ErrorBinding.swift in Sources */,
 				DBA3A41423AC252900AD1616 /* ResponseDto.swift in Sources */,
+				DB3C225123C54A56002CD498 /* UserForLogoutDto.swift in Sources */,
 				DBF7B0CE23AEC3A600971FF0 /* LoginBinding.swift in Sources */,
 				DBB19B4923C3892100890494 /* KeychainItemAccessibility.swift in Sources */,
 				DB44357D23AED9AD0001916F /* PicScapeView.swift in Sources */,
@@ -355,8 +401,9 @@
 				46D4AD4723831344006106A3 /* PicScapeApi.swift in Sources */,
 				46814290233D2BCC00E18AE2 /* PictureComponent.swift in Sources */,
 				DB905E9E23C1935800A7C513 /* JwtTokenInterceptor.swift in Sources */,
-				462C3B372353D80C009E85F9 /* ImageStore.swift in Sources */,
+				DB8AD27823DA390C007AFCF1 /* JsonConverter.swift in Sources */,
 				DBB19B4A23C3892100890494 /* KeychainWrapper.swift in Sources */,
+				DBF6BFE623FC0BC900F73100 /* PicScapeRegisterMoreInfoView.swift in Sources */,
 				469D2177233BDDB10011A5AF /* AppDelegate.swift in Sources */,
 				469D2179233BDDB10011A5AF /* SceneDelegate.swift in Sources */,
 				46BABFD92394507600507033 /* UserForLoginDto.swift in Sources */,
@@ -368,6 +415,7 @@
 				46D4AD45238310A7006106A3 /* PicScapeMeView.swift in Sources */,
 				DB44358623AEF98A0001916F /* UserForRegisterDto.swift in Sources */,
 				46649E272381E18300755042 /* PicScapeNewView.swift in Sources */,
+				DB6EDCD123C8CEEF00A6736F /* ButtonSettingStyle.swift in Sources */,
 				DB44357B23AECEC30001916F /* LoadingBinding.swift in Sources */,
 				462C3B332353D61F009E85F9 /* Json.swift in Sources */,
 				DB44358423AEF8490001916F /* PicScapeRegisterView.swift in Sources */,
@@ -584,6 +632,14 @@
 				version = "5.0.0-rc.3";
 			};
 		};
+		DBA903F923F6D0C3002AD1CA /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -596,6 +652,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 46BABFDA239452BD00507033 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DBA903FA23F6D0C3002AD1CA /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBA903F923F6D0C3002AD1CA /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

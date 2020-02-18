@@ -28,7 +28,7 @@ struct PicScapeView: View {
                 .tabItem {
                     VStack {
                         Image("Lens_icon")
-                        Text("All")
+                        Text("World")
                     }
             }
             .tag(1)
@@ -44,7 +44,7 @@ struct PicScapeView: View {
                     }
             }
             .tag(2)
-        }
+        }.accentColor(Color("TabViewColor"))
     }
 }
 
@@ -52,5 +52,8 @@ struct PicScapeView_Previews: PreviewProvider {
     static var previews: some View {
         PicScapeView()
             .environmentObject(UserBinding())
+            .environmentObject(ErrorBinding())
+            .environmentObject(LoadingBinding())
+            .environmentObject(LoginBinding())
     }
 }

@@ -7,10 +7,12 @@
 //
 
 import Alamofire
+import AlamofireImage
 import Foundation
 
 public class PicScapeAPI: NSObject{
-    static var url : String = "http://192.168.178.96:5000"
+//    static var url : String = "http://192.168.178.96:5000"
+    static var url : String = "http://localhost:5000"
     static var PicScapeApiSession = Session(configuration: URLSessionConfiguration.default, interceptor: JwtTokenInterceptor())
     
     // MARK: - Auth
@@ -21,6 +23,15 @@ public class PicScapeAPI: NSObject{
                    encoder: JSONParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
                     completion(response.result)
                    })
+    }
+    
+    static func Logout(logoutData : UserForLogoutDto, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        PicScapeApiSession.request(url + "/Auth/Logout",
+                                   method: .post,
+                                   parameters: logoutData,
+                                   encoder: JSONParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                                    completion(response.result)
+                                   })
     }
     
     static func Register(registerData : UserForRegisterDto, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
@@ -35,15 +46,15 @@ public class PicScapeAPI: NSObject{
     // MARK: - User
     static func GetUserData(userId : String, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
         let Param  = [
-            "id": userId
+            "name": userId
         ]
         
-        PicScapeApiSession.request(url + "/User/UserData",
-                   method: .get,
-                   parameters: Param,
-                   encoder: URLEncodedFormParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
-                    completion(response.result)
-                   })
+        PicScapeApiSession.request(url + "/User/name=" + userId,
+                                   method: .get,
+                                   parameters: Param,
+                                   encoder: URLEncodedFormParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                                    completion(response.result)
+                                   })
     }
     
     // MARK: - Testing
@@ -51,11 +62,30 @@ public class PicScapeAPI: NSObject{
         let Param = ["" : ""]
         
         PicScapeApiSession.request(url + "/User/IsOnline",
-                   method: .get,
-                   parameters: Param,
-                   encoder: URLEncodedFormParameterEncoder.default
+                                   method: .get,
+                                   parameters: Param,
+                                   encoder: URLEncodedFormParameterEncoder.default
         ).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
-                    completion(response.result)
-            })
+            completion(response.result)
+        })
+    }
+    
+    // MARK: - Picture
+    static func GetPicture(completion: @escaping (Result<Image, AFError>) -> Void) {
+        PicScapeApiSession.request(url + "/Picture"
+        ).responseImage(completionHandler:{ response in
+            completion(response.result)
+        })
+    }
+    
+    static func GetUserPicture(Username: String, completion: @escaping (Result<Image, AFError>) -> Void) {
+        let Param = ["Username" : Username]
+        PicScapeApiSession.request(url + "/Picture/UserPicture",
+                                   method: .get,
+                                   parameters: Param,
+                                   encoder: URLEncodedFormParameterEncoder.default
+        ).responseImage(completionHandler:{ response in
+            completion(response.result)
+        })
     }
 }

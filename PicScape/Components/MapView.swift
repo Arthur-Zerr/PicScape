@@ -6,6 +6,8 @@ struct MapView: UIViewRepresentable {
     var coordinate: CLLocationCoordinate2D
     let annotation = MKPointAnnotation()
     
+    private let locationServices:CLLocationManager = CLLocationManager()
+    
     func makeUIView(context: Context) -> MKMapView {
         MKMapView()
     }
@@ -15,11 +17,22 @@ struct MapView: UIViewRepresentable {
         let region = MKCoordinateRegion(center: coordinate, span: span)
         annotation.coordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
+        locationServices.requestWhenInUseAuthorization()
+        locationServices.desiredAccuracy = kCLLocationAccuracyBest
+        locationServices.distanceFilter = kCLDistanceFilterNone
+        locationServices.startUpdatingLocation()
+        
         view.addAnnotation(annotation)
         view.isScrollEnabled = true
         view.isZoomEnabled = true
         view.isRotateEnabled = true
         view.setRegion(region, animated: true)
+        view.showsUserLocation = true
+        
+        if let UserCoordinates = locationServices.location?.coordinate {
+            view.setCenter(UserCoordinates, animated: true)
+        }
+        
     }
 }
 
