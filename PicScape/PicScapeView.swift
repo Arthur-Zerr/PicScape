@@ -14,6 +14,8 @@ struct PicScapeView: View {
     @EnvironmentObject private var loadingData : LoadingBinding
     @EnvironmentObject private var userData : UserBinding
     
+    @State private var ViewModel : PicScapeViewModel = PicScapeViewModel()
+    
     var body: some View {
         TabView(){
             PicScapeListView()
@@ -44,7 +46,13 @@ struct PicScapeView: View {
                     }
             }
             .tag(2)
-        }.accentColor(Color("TabViewColor"))
+            }.accentColor(Color("TabViewColor"))
+            .onAppear(){
+                self.ViewModel = PicScapeViewModel(login: self.loginData, loading: self.loadingData, error: self.errorData, user: self.userData)
+                debugPrint(self.loginData.Username)
+                self.ViewModel.loadUserData(Username: self.loginData.Username)
+                self.ViewModel.loadUserPicture(Username: self.loginData.Username)
+        }
     }
 }
 

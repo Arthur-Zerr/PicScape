@@ -26,18 +26,9 @@ struct PictureComponentModel: Hashable, Codable, Identifiable {
 }
 
 extension PictureComponentModel {
-    var image: Image {
-        ImageStore.shared.image(name: PicUrl)
-    }
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
             latitude: Cor_Y,
             longitude: Cor_X)
     }
-    var featureImage: Image? {
-           return Image(
-               ImageStore.loadImage(name: "\(PicUrl)"),
-               scale: 2,
-               label: Text(verbatim: Title))
-       }
 }

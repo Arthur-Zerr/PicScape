@@ -44,7 +44,7 @@ struct ContentView: View {
                         Spacer()
                         VStack{
                             if LoginMode == true {
-                                PicScapeLogin()
+                                PicScapeLoginView()
                                     .environmentObject(loginData)
                                     .environmentObject(errorData)
                                     .environmentObject(loadingData)

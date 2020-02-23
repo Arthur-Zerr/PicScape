@@ -28,10 +28,8 @@ struct PictureComponent: View {
                     }
                 }
             }
-            pictureData.featureImage?.resizable().aspectRatio(3 / 2, contentMode: .fit)
         }
     }
-    
     func ShowMap() {
         
     }

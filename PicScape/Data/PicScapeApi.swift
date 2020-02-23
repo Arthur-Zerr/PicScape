@@ -9,10 +9,11 @@
 import Alamofire
 import AlamofireImage
 import Foundation
+import UIKit
 
 public class PicScapeAPI: NSObject{
-//    static var url : String = "http://192.168.178.96:5000"
-    static var url : String = "http://localhost:5000"
+    static var url : String = "http://192.168.178.96:5000"
+//    static var url : String = "http://localhost:5000"
     static var PicScapeApiSession = Session(configuration: URLSessionConfiguration.default, interceptor: JwtTokenInterceptor())
     
     // MARK: - Auth
@@ -78,14 +79,24 @@ public class PicScapeAPI: NSObject{
         })
     }
     
-    static func GetUserPicture(Username: String, completion: @escaping (Result<Image, AFError>) -> Void) {
+    static func GetProfilePicture(Username: String, completion: @escaping (Result<Image, AFError>) -> Void) {
         let Param = ["Username" : Username]
-        PicScapeApiSession.request(url + "/Picture/UserPicture",
+        PicScapeApiSession.request(url + "/Picture/ProfilePicture",
                                    method: .get,
                                    parameters: Param,
                                    encoder: URLEncodedFormParameterEncoder.default
         ).responseImage(completionHandler:{ response in
             completion(response.result)
         })
+    }
+    
+    static func UploadProfilePicture(Picture: UIImage, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        let imgData = Picture.jpegData(compressionQuality: 90)
+
+        PicScapeApiSession.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(imgData!, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
+            },to: url + "/Picture/ProfilePicture").responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                completion(response.result)
+            })
     }
 }
