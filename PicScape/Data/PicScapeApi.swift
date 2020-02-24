@@ -12,8 +12,10 @@ import Foundation
 import UIKit
 
 public class PicScapeAPI: NSObject{
-    static var url : String = "http://192.168.178.96:5000"
-//    static var url : String = "http://localhost:5000"
+//    static var url : String = "http://192.168.178.96:5000"
+    static var url : String = "http://localhost:5000"
+//    static var url : String = "http://192.168.64.106:5000"
+    
     static var PicScapeApiSession = Session(configuration: URLSessionConfiguration.default, interceptor: JwtTokenInterceptor())
     
     // MARK: - Auth
