@@ -27,6 +27,12 @@ extension PicScapeLoginView{
         }
 
         func Login(Username: String, Password: String){
+            if(Username == "" || Password == ""){
+                self.errorData.Message = "Please enter Login info!"
+                self.errorData.hasError = true
+                return
+            }
+            
             self.loadingData.Loading = true
             let login = UserForLoginDto(Username: Username, Password: Password)
             PicScapeAPI.Login(loginData: login){ result in

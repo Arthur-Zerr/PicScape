@@ -149,8 +149,6 @@ struct PicScapeRegisterView: View {
             
         }
         
-        
-        
         registerMode += 1
         NextButton = self.registerMode == 3 ? "Register" : "Next..."
         if(self.registerMode == 4){
