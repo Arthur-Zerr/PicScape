@@ -75,7 +75,7 @@ struct PicScapeRegisterView: View {
                         VStack{
                             DatePicker(selection: $tempDate, in: ...Date(), displayedComponents: .date){
                                 Text("")
-                                }.offset(x: -50, y: 0)
+                            }.offset(x: -50, y: 0)
                         }
                     }
                     else if(registerMode == 3){
@@ -115,30 +115,60 @@ struct PicScapeRegisterView: View {
         }
     }
     func userRegister(){
-        self.ViewModel.Register(userForRegister: userForRegister, userForUpdate: userForUpdate, selectedImage: image)
-        self.ViewModel.UpdateData(userForUpdate: userForUpdate, selectedImage: image)
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        self.userForUpdate.Birthday = df.string(from: self.tempDate)
+        self.ViewModel.Register(userForRegister: self.userForRegister, userForUpdate: self.userForUpdate, selectedImage: self.image)
     }
     
     func nextRegisterMode(){
+        switch(registerMode){
+        case 0:
+            if(self.ViewModel.ValidateUserForRegister(toValidate: userForRegister) == false){
+                self.errorData.Message = "Please Check your input!"
+                self.errorData.hasError = true
+                return
+            }
+            break
+        case 1:
+            if(self.ViewModel.ValidateUserForUpdate(toValidate: userForUpdate) == false){
+                self.errorData.Message = "Please Check your input!"
+                self.errorData.hasError = true
+                return
+            }
+            break
+        case 2:
+            if(self.ViewModel.ValidateBirhtday(toValidate: tempDate) == false ){
+                self.errorData.Message = "Please enter your Birthday!"
+                self.errorData.hasError = true
+                return
+            }
+            break
+        default:
+            break
+            
+        }
+        
+        
+        
         registerMode += 1
         NextButton = self.registerMode == 3 ? "Register" : "Next..."
         if(self.registerMode == 4){
-            let df = DateFormatter()
-            df.dateFormat = "yyyy-MM-dd"
-            self.userForUpdate.Birthday = df.string(from: self.tempDate)
-            self.ViewModel.Register(userForRegister: self.userForRegister, userForUpdate: self.userForUpdate, selectedImage: self.image)
+            userRegister()
         }
-        
-        registerProgress = Double(registerProgress + 25)
+        else {
+            registerProgress = Double(registerProgress + 25)
+        }
     }
     
     func backRegisterMode(){
         NextButton = self.registerMode == 3 ? "Register" : "Next..."
         if(registerMode <= 0){
             self.loginData.loginMode = true
+        }else {
+            registerMode -= 1
+            registerProgress = Double(registerProgress - 25)
         }
-        registerMode -= 1
-        registerProgress = Double(registerProgress - 25)
     }
     func modeImagePicker(){
         self.showImagePicker = !showImagePicker

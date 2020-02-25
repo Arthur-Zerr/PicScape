@@ -90,5 +90,37 @@ extension PicScapeRegisterView{
                 }
             }
         }
+        
+        // MARK: Validation
+        func ValidateUserForRegister(toValidate : UserForRegisterDto) -> Bool{
+            if(toValidate.Username == "" || toValidate.Password == "" || toValidate.ConfirmPassword == "" || toValidate.Email == ""){
+                return false
+            }
+            return true
+        }
+        
+        func ValidateUserForUpdate(toValidate : UserForUpdateDto) -> Bool{
+            if(toValidate.Name == "" || toValidate.Firstname == "" || toValidate.City == "" || toValidate.Country == ""){
+                return false
+            }
+            return true
+        }
+        
+        func ValidateBirhtday(toValidate : Date) -> Bool{
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd"
+            let temp = df.string(from: toValidate)
+            
+            if(temp == ""){
+                return false
+            }
+            return true
+        }
+        func ValidateConfirmPassword(password : String, confirmpassword : String) -> Bool{
+            if(password != confirmpassword){
+                return false
+            }
+            return true
+        }
     }
 }
