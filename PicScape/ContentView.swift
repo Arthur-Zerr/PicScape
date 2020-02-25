@@ -14,8 +14,6 @@ struct ContentView: View {
     @EnvironmentObject private var loadingData : LoadingBinding
     @EnvironmentObject private var userData : UserBinding
     
-    
-    @State private var LoginMode : Bool = true
     @State private var ModeButton : String = "Or Register?"
     
     init() {
@@ -34,30 +32,32 @@ struct ContentView: View {
                 }
                 if self.loginData.hasLogin == false{
                     VStack{
-                        Spacer()
+                        Spacer().frame(height: 75).fixedSize()
                         VStack{
                             Text("PicScape")
                                 .font(.largeTitle)
                                 .fontWeight(.heavy)
                         }
-                        Spacer()
-                        Spacer()
                         VStack{
-                            if LoginMode == true {
+                            if self.loginData.loginMode  == true {
+                                Spacer().frame(height: 150).fixedSize()
                                 PicScapeLoginView()
                                     .environmentObject(loginData)
                                     .environmentObject(errorData)
                                     .environmentObject(loadingData)
                             }
-                            if LoginMode == false {
+                            if self.loginData.loginMode  == false {
+                                Spacer().frame(height: 125).fixedSize()
                                 PicScapeRegisterView()
                                     .environmentObject(loginData)
                                     .environmentObject(errorData)
                                     .environmentObject(loadingData)
                             }
-                            Button(ModeButton, action: changeMode).accentColor(Color("ButtonColor"))
                         }
                         Spacer()
+                        if(self.loginData.loginMode == true){
+                            Button("Or Register", action: changeMode).accentColor(Color("ButtonColor")).offset(x: 0, y: 100)
+                        }
                         Spacer()
                         VStack{
                             Text("FROM").font(.subheadline)
@@ -76,9 +76,7 @@ struct ContentView: View {
         }
     }
     func changeMode(){
-        self.LoginMode = !self.LoginMode
-        if(LoginMode == true){ModeButton = "Or Register?"}
-        else {ModeButton = "Or Login?"}
+        self.loginData.loginMode = !self.loginData.loginMode
     }
 }
 

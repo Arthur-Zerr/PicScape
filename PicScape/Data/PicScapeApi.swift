@@ -60,6 +60,15 @@ public class PicScapeAPI: NSObject{
                                    })
     }
     
+    static func UpdateUserData(userForUpdate : UserForUpdateDto, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        PicScapeApiSession.request(url + "/User/UpdateUserData",
+                   method: .post,
+                   parameters: userForUpdate,
+                   encoder: JSONParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                    completion(response.result)
+                   })
+    }
+    
     // MARK: - Testing
     static func IsOnline(completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
         let Param = ["" : ""]

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension PicScapeRegisterView{
     class PicScapeRegisterViewModel : ObservableObject{
@@ -23,16 +24,17 @@ extension PicScapeRegisterView{
             self.errorData = error
         }
         
-        func Register(userForRegister : UserForRegisterDto) {
+        func Register(userForRegister : UserForRegisterDto, userForUpdate : UserForUpdateDto, selectedImage : UIImage?) {
             self.loadingData.Loading = true
             PicScapeAPI.Register(registerData: userForRegister){ result in
                 switch result {
                 case .success(let responseData):
                     if responseData.success == true {
-                        self.loginData.hasLogin = true
                         PicScapeKeychain.SaveAPIToken(Token: responseData.data)
                         PicScapeKeychain.SaveUserData(Username: userForRegister.Username, Password: userForRegister.Password)
-                        self.loadingData.Loading = false
+                        self.loginData.Username = userForRegister.Username
+                        self.loginData.Password = userForRegister.Password
+                        self.UpdateData(userForUpdate: userForUpdate, selectedImage: selectedImage)
                     }
                     else {
                         self.errorData.ShowError(message: responseData.message)
@@ -45,6 +47,48 @@ extension PicScapeRegisterView{
             }
         }
         
+        func UpdateData(userForUpdate : UserForUpdateDto, selectedImage : UIImage?){
+            debugPrint(userForUpdate.Birthday)
+            PicScapeAPI.UpdateUserData(userForUpdate: userForUpdate){ result in
+                switch result {
+                case .success(let responseData):
+                    if responseData.success == true {
+                        self.UploadPicture(selectedImage: selectedImage)
+                        self.loginData.hasLogin = true
+                    }
+                    else {
+                        self.errorData.ShowError(message : responseData.message)
+                        self.loadingData.Loading = false
+                    }
+                case .failure(let error):
+                    self.errorData.ShowError(message : error.localizedDescription)
+                    self.loadingData.Loading = false
+                }
+            }
+        }
         
+        func UploadPicture(selectedImage : UIImage?){
+            if(selectedImage?.cgImage == nil){
+                return
+            }
+            
+            self.loadingData.Loading = true
+            let image : UIImage = selectedImage ?? UIImage()
+            PicScapeAPI.UploadProfilePicture(Picture: image){ result in
+                switch result {
+                case .success(let responseData):
+                    if responseData.success == true {
+                        self.loadingData.Loading = false
+                    }
+                    else {
+                        self.errorData.ShowError(message : responseData.message)
+                        self.loadingData.Loading = false
+                    }
+                case .failure(let error):
+                    self.errorData.ShowError(message : error.localizedDescription)
+                    self.loadingData.Loading = false
+                }
+            }
+        }
     }
 }

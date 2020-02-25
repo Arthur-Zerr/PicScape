@@ -15,6 +15,7 @@ public class JwtTokenInterceptor: RequestInterceptor {
     
     public func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void){
         var modifiedURLRequest = urlRequest
+        token = PicScapeKeychain.GetAPIToken()
         modifiedURLRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         completion(.success(modifiedURLRequest))
     }
