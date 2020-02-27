@@ -21,7 +21,7 @@ struct PicScapeLoginView: View {
     
     var body: some View {
         VStack{
-            Text("Login").font(.title).padding()
+            Text("Login").font(.title).padding().animation(.easeInOut)
             VStack{
                 TextField("Username", text: $Username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())

@@ -23,12 +23,15 @@ struct PicScapeRegisterView: View {
     @State private var registerMode : Int = 0
     @State private var showImagePicker : Bool = false
     @State private var image : UIImage? = UIImage()
-    @State private var registerProgress : Double = 25
+    @State private var registerProgress : Double = 0
     
-    @State private var NextButton : String = "Next..."
+    @State private var NextButton : String = "Start..."
     @State private var BackButton : String = "Back..."
     
     @State private var tempDate : Date = Date()
+    
+    @State private var NextAnimationEdge : Edge = .trailing
+    @State private var BackAnimationEdge : Edge = .leading
     func Viewinit(){
         ViewModel = PicScapeRegisterViewModel(login: loginData, loading: loadingData, error: errorData)
     }
@@ -41,62 +44,82 @@ struct PicScapeRegisterView: View {
                     Progressbar(value: $registerProgress.wrappedValue,width: 300)
                         .frame(width: 300, height: 10).fixedSize()
                     Spacer().frame(height: 50)
-                }
+                }.animation(.easeInOut)
                 VStack{
                     if(registerMode == 0){
-                        TextField("Username", text: $userForRegister.Username)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
-                        TextField("Email", text: $userForRegister.Email)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
-                        SecureField("Password", text: $userForRegister.Password)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
-                        SecureField("Confirm Password", text: $userForRegister.ConfirmPassword)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
+                        Text("Lets Start")
                     }
-                    else if(registerMode == 1){
-                        TextField("Name", text: $userForUpdate.Name)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
-                        TextField("Firstname", text: $userForUpdate.Firstname)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
-                        TextField("City", text: $userForUpdate.City)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
-                        TextField("Country", text: $userForUpdate.Country)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .frame(width: 250, height: 50)
+                    if(registerMode == 1){
+                        VStack{
+                            TextField("Username", text: $userForRegister.Username)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                            TextField("Email", text: $userForRegister.Email)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                            SecureField("Password", text: $userForRegister.Password)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                            SecureField("Confirm Password", text: $userForRegister.ConfirmPassword)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                        }.transition(AnyTransition.asymmetric(insertion: .move(edge: NextAnimationEdge), removal: .move(edge: BackAnimationEdge)).combined(with: .opacity))
                     }
-                    else if (registerMode == 2){
+                    else if(registerMode == 2){
+                        VStack{
+                            TextField("Name", text: $userForUpdate.Name)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                            TextField("Firstname", text: $userForUpdate.Firstname)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                            TextField("City", text: $userForUpdate.City)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                            TextField("Country", text: $userForUpdate.Country)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .frame(width: 250, height: 50)
+                        }.transition(AnyTransition.asymmetric(insertion: .move(edge: NextAnimationEdge), removal: .move(edge: BackAnimationEdge)).combined(with: .opacity))
+                    }
+                    else if (registerMode == 3){
                         VStack{
                             DatePicker(selection: $tempDate, in: ...Date(), displayedComponents: .date){
                                 Text("")
                             }.offset(x: -50, y: 0)
-                        }
+                        }.transition(AnyTransition.asymmetric(insertion: .move(edge: NextAnimationEdge), removal: .move(edge: BackAnimationEdge)).combined(with: .opacity))
                     }
-                    else if(registerMode == 3){
-                        Button(action: self.modeImagePicker) {
-                            Text("Profile Picture")
-                            userData.UserPicture?
-                                .resizable()
-                                .clipShape(Circle())
-                                .overlay(Circle().stroke(Color("InvertColor"), lineWidth: 4))
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 150, height: 150)
-                        }.buttonStyle(PlainButtonStyle())
+                    else if(registerMode == 4){
+                        VStack{
+                            Button(action: self.modeImagePicker) {
+                                Text("Profile Picture")
+                                userData.UserPicture?
+                                    .resizable()
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color("InvertColor"), lineWidth: 4))
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 150, height: 150)
+                            }.buttonStyle(PlainButtonStyle())
+                        }.transition(AnyTransition.asymmetric(insertion: .move(edge: NextAnimationEdge), removal: .move(edge: BackAnimationEdge)).combined(with: .opacity))
+                    }
+                    else if(registerMode == 5){
+                        VStack{
+                            Text("Finished")
+                        }.transition(AnyTransition.asymmetric(insertion: .move(edge: NextAnimationEdge), removal: .move(edge: BackAnimationEdge)).combined(with: .opacity))
                     }
                 }
                 Spacer().frame(height: 20)
                 HStack{
-                    Button(BackButton, action: backRegisterMode)
-                        .padding()
+                    Button(BackButton, action: {
+                        withAnimation{
+                            self.backRegisterMode()
+                        }
+                    }).padding()
                         .accentColor(Color("ButtonColor"))
-                    Button(NextButton, action: nextRegisterMode)
-                        .padding()
+                    Button(NextButton, action: {
+                        withAnimation{
+                            self.nextRegisterMode()
+                        }
+                    }).padding()
                         .accentColor(Color("ButtonColor"))
                 }
             }
@@ -122,50 +145,68 @@ struct PicScapeRegisterView: View {
     }
     
     func nextRegisterMode(){
+        if(ValidateForm() == false){
+            return
+        }
+        BackAnimationEdge = .leading
+        NextAnimationEdge = .trailing
+        if(self.registerMode == 5){
+            userRegister()
+        }
+        else {
+            registerMode += 1
+            UpdateButtonText()
+            registerProgress = Double(registerProgress + 20)
+        }
+    }
+    
+    func ValidateForm() -> Bool{
         switch(registerMode){
-        case 0:
+        case 1:
             if(self.ViewModel.ValidateUserForRegister(toValidate: userForRegister) == false){
                 self.errorData.Message = "Please Check your input!"
                 self.errorData.hasError = true
-                return
-            }
-            break
-        case 1:
-            if(self.ViewModel.ValidateUserForUpdate(toValidate: userForUpdate) == false){
-                self.errorData.Message = "Please Check your input!"
-                self.errorData.hasError = true
-                return
+                return false
             }
             break
         case 2:
+            if(self.ViewModel.ValidateUserForUpdate(toValidate: userForUpdate) == false){
+                self.errorData.Message = "Please Check your input!"
+                self.errorData.hasError = true
+                return false
+            }
+            break
+        case 3:
             if(self.ViewModel.ValidateBirhtday(toValidate: tempDate) == false ){
                 self.errorData.Message = "Please enter your Birthday!"
                 self.errorData.hasError = true
-                return
+                return false
             }
             break
         default:
             break
             
         }
-        
-        registerMode += 1
-        NextButton = self.registerMode == 3 ? "Register" : "Next..."
-        if(self.registerMode == 4){
-            userRegister()
-        }
-        else {
-            registerProgress = Double(registerProgress + 25)
-        }
+        return true
     }
     
     func backRegisterMode(){
-        NextButton = self.registerMode == 3 ? "Register" : "Next..."
+        BackAnimationEdge = .trailing
+        NextAnimationEdge = .leading
         if(registerMode <= 0){
             self.loginData.loginMode = true
         }else {
             registerMode -= 1
-            registerProgress = Double(registerProgress - 25)
+            registerProgress = Double(registerProgress - 20)
+        }
+        UpdateButtonText()
+    }
+    
+    func UpdateButtonText(){
+        if(registerMode == 0){
+            NextButton = "Start..."
+        }else {
+            NextButton = self.registerMode == 5 ? "Register" : "Next..."
         }
     }
     func modeImagePicker(){

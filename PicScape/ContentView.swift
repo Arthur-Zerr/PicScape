@@ -56,7 +56,11 @@ struct ContentView: View {
                         }
                         Spacer()
                         if(self.loginData.loginMode == true){
-                            Button("Or Register", action: changeMode).accentColor(Color("ButtonColor")).offset(x: 0, y: 100)
+                            Button("Or Register", action: {
+                                withAnimation{
+                                    self.changeMode()
+                                }
+                            }).accentColor(Color("ButtonColor")).offset(x: 0, y: 100)
                         }
                         Spacer()
                         VStack{
