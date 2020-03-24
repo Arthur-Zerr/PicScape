@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import AlamofireImage
+import RxSwift
 
 extension PicScapeMeView {
     class PicScapeMeViewModel : ObservableObject{
@@ -18,6 +19,10 @@ extension PicScapeMeView {
         private var loadingData : LoadingBinding = LoadingBinding()
         private var userData : UserBinding = UserBinding()
         
+        private let meInfiniteScrollRepository : MeInfiniteScrollRepository = MeInfiniteScrollRepository()
+        public var viewUpdate: ViewUpdateProtocol? = nil
+        private let disposeBag = DisposeBag()
+        
         init() {}
         
         init(login: LoginBinding, loading: LoadingBinding, error: ErrorBinding, user: UserBinding) {
@@ -25,8 +30,22 @@ extension PicScapeMeView {
             self.loadingData = loading
             self.errorData = error
             self.userData = user
+            
+            self.meInfiniteScrollRepository.getPictureModelArray().subscribe({ [weak self] newList in
+                self?.updateListItems(newList: newList.element)
+            }).disposed(by: disposeBag)
         }
-
+        
+        func updateListItems(newList: [PictureListModel]?){
+            if newList != nil && !newList!.isEmpty{
+                self.viewUpdate?.appendData(list: newList)
+            }
+        }
+        
+        func getNewItems(currentListSize: Int){
+            meInfiniteScrollRepository.fetchListItems(currentListSize: currentListSize, Username: self.userData.UserData.Username)
+            
+        }
         
         func UploadPicture(selectedImage : UIImage?){
             if(selectedImage?.cgImage == nil){
@@ -39,7 +58,6 @@ extension PicScapeMeView {
                 switch result {
                 case .success(let responseData):
                     if responseData.success == true {
-                        self.userData.UserPicture = SwiftUI.Image(uiImage: image)
                         self.loadingData.Loading = false
                     }
                     else {
@@ -53,7 +71,6 @@ extension PicScapeMeView {
             }
         }
         
-
         func doNothing(){}
     }
 }

@@ -11,9 +11,6 @@ import WaterfallGrid
 
 struct PicScapeNewView: View {
     var body: some View {
-//        WaterfallGrid(PicScapeNewData) { picscapedata in
-//            PicScapeNew_Component(pictureData: picscapedata)
-//        }.gridStyle(columns: 3, spacing: 8)
         Text("In Development")
     }
 }

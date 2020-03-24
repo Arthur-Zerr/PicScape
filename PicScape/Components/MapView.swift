@@ -32,7 +32,6 @@ struct MapView: UIViewRepresentable {
         if let UserCoordinates = locationServices.location?.coordinate {
             view.setCenter(UserCoordinates, animated: true)
         }
-        
     }
 }
 

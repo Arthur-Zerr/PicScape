@@ -11,4 +11,18 @@ import Combine
 
 class LoadingBinding: ObservableObject {
     @Published var Loading : Bool = false
+    
+    var LoadingNumber : Int = 0
+    
+    func Show(){
+        LoadingNumber += 1
+        Loading = true
+    }
+    
+    func Close(){
+        LoadingNumber -= 1
+        if LoadingNumber <= 1{
+            Loading = false
+        }
+    }
 }

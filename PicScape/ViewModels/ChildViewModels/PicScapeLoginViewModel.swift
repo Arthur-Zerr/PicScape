@@ -34,15 +34,12 @@ extension PicScapeLoginView{
             }
             
             self.loadingData.Loading = true
-            let login = UserForLoginDto(Username: Username, Password: Password)
-            PicScapeAPI.Login(loginData: login){ result in
+            PicScapeAPI.Login(loginData: UserForLoginDto(Username: Username, Password: Password)){ result in
                 switch result {
                 case .success(let responseData):
                     if responseData.success == true {
                         PicScapeKeychain.SaveUserData(Username: Username, Password: Password)
                         PicScapeKeychain.SaveAPIToken(Token: responseData.data)
-                        self.loginData.Username = Username
-                        self.loginData.Password = Password
                         self.loginData.hasLogin = true
                         self.loadingData.Loading = false
                     }
@@ -56,6 +53,5 @@ extension PicScapeLoginView{
                 }
             }
         }
-
     }
 }

@@ -47,7 +47,6 @@ struct PicScapeLoginView: View {
     func login(){
         self.ViewModel.Login(Username: Username, Password: Password)
     }
-    
 }
 
 struct PicScapeLoginView_Previews: PreviewProvider {

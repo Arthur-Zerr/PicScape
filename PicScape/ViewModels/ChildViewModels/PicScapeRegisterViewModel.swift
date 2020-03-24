@@ -32,8 +32,6 @@ extension PicScapeRegisterView{
                     if responseData.success == true {
                         PicScapeKeychain.SaveAPIToken(Token: responseData.data)
                         PicScapeKeychain.SaveUserData(Username: userForRegister.Username, Password: userForRegister.Password)
-                        self.loginData.Username = userForRegister.Username
-                        self.loginData.Password = userForRegister.Password
                         self.UpdateData(userForUpdate: userForUpdate, selectedImage: selectedImage)
                     }
                     else {

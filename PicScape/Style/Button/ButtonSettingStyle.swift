@@ -17,6 +17,7 @@ struct ButtonSettingStyle : ButtonStyle {
               .padding()
               .foregroundColor(Color("ButtonFontColor"))
         .background(Color("ButtonColor"))
+            
             .padding(.horizontal, 5)
       }
 }

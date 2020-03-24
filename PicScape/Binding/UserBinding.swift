@@ -11,5 +11,4 @@ import Combine
 
 class UserBinding: ObservableObject {
     @Published var UserData : User = User(Id: "", Username: "", Firstname: "", LastName: "", City: "", Country: "")
-    @Published var UserPicture : Image? = Image("User_icon")
 }

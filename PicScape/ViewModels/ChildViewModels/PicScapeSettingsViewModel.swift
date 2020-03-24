@@ -29,10 +29,8 @@ extension PicScapeSettingsView {
         
         
         private func logoutUser(){
-            self.loginData.Password = ""
-            self.loginData.Username = ""
             self.userData.UserData = User(Id: "", Username: "", Firstname: "", LastName: "", City: "", Country: "")
-            self.userData.UserPicture = Image("User_icon")
+            PicScapeImageCache.RemoveAll()
             self.loginData.hasLogin = false
             PicScapeKeychain.RemoveAPIToken()
             PicScapeKeychain.RemoveUserData()
@@ -78,6 +76,5 @@ extension PicScapeSettingsView {
                 }
             }
         }
-        
     }
 }

@@ -55,6 +55,7 @@ struct PicScapeRegisterView: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .frame(width: 250, height: 50)
                             TextField("Email", text: $userForRegister.Email)
+                                .textContentType(.emailAddress)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .frame(width: 250, height: 50)
                             SecureField("Password", text: $userForRegister.Password)
@@ -92,7 +93,7 @@ struct PicScapeRegisterView: View {
                         VStack{
                             Button(action: self.modeImagePicker) {
                                 Text("Profile Picture")
-                                userData.UserPicture?
+                                    Image(uiImage: image!)
                                     .resizable()
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(Color("InvertColor"), lineWidth: 4))
@@ -129,7 +130,7 @@ struct PicScapeRegisterView: View {
             ImagePicker(isVisibile: self.$showImagePicker, image: self.$image , sourceType: 1).edgesIgnoringSafeArea(.bottom)
                 .onDisappear(){
                     if(self.image?.cgImage != nil){
-                        self.userData.UserPicture = Image(uiImage: self.image!)
+                        //self.userData.UserPicture = Image(uiImage: self.image!)
                     }
             }
             .onAppear(){

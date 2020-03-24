@@ -10,8 +10,8 @@ import Foundation
 import SwiftUI
 
 struct PictureModel:  Hashable, Codable, Identifiable {
-    var id: Int
-    var PicUrl: String
-    var UserId: Int
+    var id : Int
+    var userID : String
+    var img : String
 }
 

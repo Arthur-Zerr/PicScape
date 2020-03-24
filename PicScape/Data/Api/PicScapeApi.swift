@@ -12,9 +12,9 @@ import Foundation
 import UIKit
 
 public class PicScapeAPI: NSObject{
-//    static var url : String = "http://192.168.178.96:5000"
+    //    static var url : String = "http://192.168.178.96:5000"
     static var url : String = "http://localhost:5000"
-//    static var url : String = "http://192.168.64.106:5000"
+//        static var url : String = "http://192.168.64.106:5000"
     
     static var PicScapeApiSession = Session(configuration: URLSessionConfiguration.default, interceptor: JwtTokenInterceptor())
     
@@ -47,12 +47,25 @@ public class PicScapeAPI: NSObject{
     }
     
     // MARK: - User
-    static func GetUserData(userId : String, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+    static func GetUserDataByName(username : String, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
         let Param  = [
-            "name": userId
+            "name": username
         ]
         
-        PicScapeApiSession.request(url + "/User/name=" + userId,
+        PicScapeApiSession.request(url + "/User/UserDataByName=" + username,
+                                   method: .get,
+                                   parameters: Param,
+                                   encoder: URLEncodedFormParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                                    completion(response.result)
+                                   })
+    }
+    
+    static func GetUserDataById(userId : String, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        let Param  = [
+            "id": userId
+        ]
+        
+        PicScapeApiSession.request(url + "/User/UserDataById=" + userId,
                                    method: .get,
                                    parameters: Param,
                                    encoder: URLEncodedFormParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
@@ -62,11 +75,11 @@ public class PicScapeAPI: NSObject{
     
     static func UpdateUserData(userForUpdate : UserForUpdateDto, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
         PicScapeApiSession.request(url + "/User/UpdateUserData",
-                   method: .post,
-                   parameters: userForUpdate,
-                   encoder: JSONParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
-                    completion(response.result)
-                   })
+                                   method: .post,
+                                   parameters: userForUpdate,
+                                   encoder: JSONParameterEncoder.default).responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+                                    completion(response.result)
+                                   })
     }
     
     // MARK: - Testing
@@ -101,13 +114,48 @@ public class PicScapeAPI: NSObject{
         })
     }
     
-    static func UploadProfilePicture(Picture: UIImage, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
-        let imgData = Picture.jpegData(compressionQuality: 90)
-
-        PicScapeApiSession.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(imgData!, withName: "file",fileName: "file.jpg", mimeType: "image/jpg")
-            },to: url + "/Picture/ProfilePicture").responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
-                completion(response.result)
-            })
+    static func GetPictureData(Id : Int, completion: @escaping (Result<PictureDataDto, AFError>) -> Void) {
+        let Param = ["id" : Id]
+        PicScapeApiSession.request(url + "/Picture/PictureData",
+                                   method: .get,
+                                   parameters: Param,
+                                   encoder: URLEncodedFormParameterEncoder.default
+        ).responseDecodable(completionHandler:{ (response: DataResponse<PictureDataDto, AFError>) in
+            completion(response.result)
+        })
     }
+    
+    static func GetPicturesForUser(username: String, Page : Int, completion: @escaping (Result<[PictureModel], AFError>) -> Void) {
+        let Param = ["Username" : username, "page" : String(Page), "pageSize" : "15"]
+        
+        PicScapeApiSession.request(url + "/Picture/AllPictureForUser",
+                                   method: .get,
+                                   parameters: Param,
+                                   encoder: URLEncodedFormParameterEncoder.default
+        ).responseDecodable(completionHandler:{ (response: DataResponse<[PictureModel], AFError>) in
+            completion(response.result)
+        })
+    }
+    
+    static func UploadProfilePicture(Picture: UIImage, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        let imgData = Picture.jpegData(compressionQuality: 75)
+        
+        PicScapeApiSession.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData!, withName: "file",fileName: "file.jpeg", mimeType: "image/jpeg")
+        },to: url + "/Picture/ProfilePicture").responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+            completion(response.result)
+        })
+    }
+    
+    static func UploadPicture(Picture: UIImage, completion: @escaping (Result<ResponseDto, AFError>) -> Void) {
+        let imgData = Picture.jpegData(compressionQuality: 90)
+        
+        PicScapeApiSession.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData!, withName: "file",fileName: "file.jpeg", mimeType: "image/jpeg")
+        },to: url + "/Picture/Picture").responseDecodable(completionHandler:{ (response: DataResponse<ResponseDto, AFError>) in
+            completion(response.result)
+        })
+    }
+    
+
 }

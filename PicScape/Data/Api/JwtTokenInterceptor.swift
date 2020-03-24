@@ -23,8 +23,9 @@ public class JwtTokenInterceptor: RequestInterceptor {
      public func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
             token = PicScapeKeychain.GetAPIToken()
+            completion(.retry)
         }
-        completion(.retry)
+        completion(.doNotRetry)
     }
 }
 

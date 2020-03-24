@@ -14,11 +14,15 @@ struct PicScapeSettingsView: View {
     @EnvironmentObject private var errorData : ErrorBinding
     @EnvironmentObject private var loadingData : LoadingBinding
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    
     @State private var ViewModel : PicScapeSettingsViewModel = PicScapeSettingsViewModel()
     
     var body: some View {
-        //TODO: Make Settings Page
         VStack{
+            Spacer()
+            Text("Settings").font(.largeTitle)
             List(){
                 Button("Edit Profil",action: ViewModel.doNothing)
                 Button("Test Picture",action: ViewModel.doNothing)
@@ -35,12 +39,17 @@ struct PicScapeSettingsView: View {
                 .buttonStyle(ButtonSettingStyle())
                 .padding(.init(top: 0, leading: 0, bottom: 5, trailing: 0))
             
-            Button("logout",action: ViewModel.UserLogout)
+            Button("logout",action: logout)
                 .buttonStyle(ButtonSettingStyle())
                 .padding(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         }.onAppear(){
             self.ViewModel = PicScapeSettingsViewModel(login: self.loginData, loading: self.loadingData, error: self.errorData, user: self.userData)
         }
+    }
+    
+    func logout(){
+        self.ViewModel.UserLogout()
+        self.presentationMode.wrappedValue.dismiss()
     }
 }
 

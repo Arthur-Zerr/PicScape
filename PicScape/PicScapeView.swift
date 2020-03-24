@@ -49,9 +49,8 @@ struct PicScapeView: View {
             }.accentColor(Color("TabViewColor"))
             .onAppear(){
                 self.ViewModel = PicScapeViewModel(login: self.loginData, loading: self.loadingData, error: self.errorData, user: self.userData)
-                self.loginData.Username = PicScapeKeychain.GetUserUsername()
-                self.ViewModel.loadUserData(Username: self.loginData.Username)
-                self.ViewModel.loadUserPicture(Username: self.loginData.Username)
+                self.ViewModel.loadUserData(Username: PicScapeKeychain.GetUserUsername())
+                self.ViewModel.loadUserPicture(Username: PicScapeKeychain.GetUserUsername())
         }
     }
 }
